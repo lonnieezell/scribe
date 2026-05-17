@@ -3,23 +3,20 @@ FROM php:8.4-cli-alpine
 RUN apk add --no-cache \
     bash \
     curl \
+    curl-dev \
     icu-dev \
     libxml2-dev \
     libzip-dev \
+    linux-headers \
+    mariadb-dev \
     oniguruma-dev \
     sqlite-dev \
     $PHPIZE_DEPS
 
 RUN docker-php-ext-install \
-    curl \
-    dom \
     intl \
     mbstring \
-    pdo \
     pdo_mysql \
-    pdo_sqlite \
-    sqlite3 \
-    xml \
     zip
 
 RUN pecl install xdebug && docker-php-ext-enable xdebug
