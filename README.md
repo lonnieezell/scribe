@@ -8,7 +8,7 @@ A starter template for building CodeIgniter 4 packages. Replace `YourVendor`, `Y
 2. Clone this template and point it at your new repo:
 
 ```bash
-git clone https://github.com/YOUR_ORG/ci-blank-addon.git your-package-name
+git clone https://github.com/lonnieezell/codeigniter-package-skeleton.git your-package-name
 cd your-package-name
 git remote set-url origin https://github.com/YOUR_ORG/your-package-name.git
 git push -u origin main
