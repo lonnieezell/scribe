@@ -30,14 +30,18 @@ theme:
 
 repo_url: https://github.com/vendor/package
 edit_uri: edit/develop/docs/
-copyright: Copyright &copy; 2025 Your Name.
+copyright: Copyright &copy; 2026 Your Name.
 
 markdown_extensions:
-  - pymdownx.superfences
   - pymdownx.highlight:
-      use_pygments: false
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - admonition
   - pymdownx.details
+  - tables
 
 plugins:
   - search

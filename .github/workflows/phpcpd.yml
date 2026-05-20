@@ -3,13 +3,13 @@ name: PHPCPD
 on:
   pull_request:
     branches:
-      - develop
+      - main
     paths:
       - '**.php'
       - '.github/workflows/phpcpd.yml'
   push:
     branches:
-      - develop
+      - main
     paths:
       - '**.php'
       - '.github/workflows/phpcpd.yml'

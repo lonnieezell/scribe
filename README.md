@@ -24,9 +24,11 @@ git push -u origin main
 
 4. Run `composer install` (or `docker compose up`) to install dependencies.
 
+> **Note on GitHub Workflows:** The CI workflows in `.github/workflows/` are configured to trigger on PRs targeting `main` or pushes directly to `main`. If your project uses a different branching strategy (e.g., PRs go to `develop`, or you use a `release` branch), update the `branches:` values in each workflow file to match.
+
 ## Requirements
 
-- PHP 8.4+
+- PHP 8.2+
 - CodeIgniter 4.7+
 
 ## Project Structure
