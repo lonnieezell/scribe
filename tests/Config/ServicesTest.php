@@ -26,7 +26,8 @@ final class ServicesTest extends CIUnitTestCase
     {
         // Verify service construction succeeds and returns the expected class
         $service = Services::scribe();
-        $this->assertSame(AIService::class, get_class($service));
+        // @phpstan-ignore method.alreadyNarrowedType (verifying the factory wiring contract)
+        $this->assertInstanceOf(AIService::class, $service);
     }
 
     public function testScribeServiceIsShared(): void

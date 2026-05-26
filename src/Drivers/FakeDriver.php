@@ -20,7 +20,7 @@ use Myth\Scribe\AIResponse;
  */
 class FakeDriver implements AIDriver
 {
-    private AIResponse $response;
+    private readonly AIResponse $response;
 
     public function __construct(?AIResponse $response = null)
     {
