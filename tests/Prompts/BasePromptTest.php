@@ -172,10 +172,16 @@ final class BasePromptTest extends CIUnitTestCase
 
     public function testBuildSystemPromptThrowsWhenSchemaCannotBeJsonEncoded(): void
     {
-        $prompt = new class extends BasePrompt {
-            public function systemPrompt(): string { return 'sys'; }
+        $prompt = new class () extends BasePrompt {
+            public function systemPrompt(): string
+            {
+                return 'sys';
+            }
 
-            public function userPrompt(): string { return 'user'; }
+            public function userPrompt(): string
+            {
+                return 'user';
+            }
 
             public function schema(): ?array
             {

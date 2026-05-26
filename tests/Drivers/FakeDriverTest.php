@@ -31,7 +31,7 @@ final class FakeDriverTest extends CIUnitTestCase
 
     public function testReturnsDefaultResponse(): void
     {
-        $driver = new FakeDriver();
+        $driver   = new FakeDriver();
         $response = $driver->complete('sys', 'user', null, null, []);
 
         $this->assertInstanceOf(AIResponse::class, $response);
@@ -44,7 +44,7 @@ final class FakeDriverTest extends CIUnitTestCase
     public function testAllowsCustomResponse(): void
     {
         $custom = new AIResponse('{"ok":true}', 'gpt-4o', 5, 10, []);
-        $driver  = new FakeDriver($custom);
+        $driver = new FakeDriver($custom);
 
         $response = $driver->complete('sys', 'user', null, null, []);
         $this->assertSame($custom, $response);

@@ -28,9 +28,15 @@ use Myth\Scribe\Prompts\BasePrompt;
  */
 final class DefaultDriverPrompt extends BasePrompt
 {
-    public function systemPrompt(): string { return 'System'; }
+    public function systemPrompt(): string
+    {
+        return 'System';
+    }
 
-    public function userPrompt(): string { return 'User'; }
+    public function userPrompt(): string
+    {
+        return 'User';
+    }
 }
 
 /**
@@ -42,9 +48,15 @@ final class OverrideDriverPrompt extends BasePrompt
 {
     public ?string $driver = 'openai';
 
-    public function systemPrompt(): string { return 'System'; }
+    public function systemPrompt(): string
+    {
+        return 'System';
+    }
 
-    public function userPrompt(): string { return 'User'; }
+    public function userPrompt(): string
+    {
+        return 'User';
+    }
 }
 
 /**
@@ -54,7 +66,7 @@ final class AIServiceTest extends CIUnitTestCase
 {
     private function makeConfig(): AI
     {
-        $config = new AI();
+        $config                  = new AI();
         $config->drivers['fake'] = ['apiKey' => '', 'model' => 'fake', 'timeout' => 30];
 
         return $config;
@@ -75,9 +87,9 @@ final class AIServiceTest extends CIUnitTestCase
 
     public function testRunUsesDefaultDriverFromConfig(): void
     {
-        $config          = $this->makeConfig();
+        $config                = $this->makeConfig();
         $config->defaultDriver = 'claude';
-        $service         = $this->makeService($config);
+        $service               = $this->makeService($config);
 
         $response = $service->run(new DefaultDriverPrompt());
 
