@@ -27,6 +27,7 @@ final class AIExceptionTest extends CIUnitTestCase
     public function testAIExceptionExtendsPackageException(): void
     {
         $e = new AIException('Something failed');
+        // @phpstan-ignore method.alreadyNarrowedType (explicitly verifying the inheritance contract)
         $this->assertInstanceOf(PackageException::class, $e);
         $this->assertSame('Something failed', $e->getMessage());
     }
@@ -34,6 +35,7 @@ final class AIExceptionTest extends CIUnitTestCase
     public function testAIAuthExceptionExtendsAIException(): void
     {
         $e = new AIAuthException('Invalid API key');
+        // @phpstan-ignore method.alreadyNarrowedType (explicitly verifying the inheritance contract)
         $this->assertInstanceOf(AIException::class, $e);
         $this->assertSame('Invalid API key', $e->getMessage());
     }
@@ -41,6 +43,7 @@ final class AIExceptionTest extends CIUnitTestCase
     public function testAIRateLimitExceptionExtendsAIException(): void
     {
         $e = new AIRateLimitException('Rate limit exceeded');
+        // @phpstan-ignore method.alreadyNarrowedType (explicitly verifying the inheritance contract)
         $this->assertInstanceOf(AIException::class, $e);
         $this->assertSame('Rate limit exceeded', $e->getMessage());
     }

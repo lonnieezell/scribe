@@ -21,8 +21,6 @@ parameters:
 			- Myth\Scribe\Config
 		additionalServices:
 			- Myth\Scribe\Config\Services
-		additionalConfig:
-			- Myth\Scribe\Config\AI
 	strictRules:
 		allRules: false
 		disallowedLooseComparison: true

@@ -15,7 +15,6 @@ namespace Myth\Scribe\Config;
 
 use CodeIgniter\Config\BaseService;
 use Myth\Scribe\AIService;
-use Myth\Scribe\Exceptions\AIException;
 
 class Services extends BaseService
 {
@@ -30,10 +29,8 @@ class Services extends BaseService
             return static::getSharedInstance('scribe');
         }
 
-        $config = config(AI::class);
-        if (! $config instanceof AI) {
-            throw new AIException('Could not load Myth\\Scribe\\Config\\AI configuration.');
-        }
+        /** @var AI $config */
+        $config = config('AI');
 
         // Driver factories are intentionally empty here; real HTTP drivers will be
         // registered in a subsequent slice. Use AIService directly with explicit

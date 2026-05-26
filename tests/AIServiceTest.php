@@ -93,7 +93,6 @@ final class AIServiceTest extends CIUnitTestCase
 
         $response = $service->run(new DefaultDriverPrompt());
 
-        $this->assertInstanceOf(AIResponse::class, $response);
         $this->assertSame('fake-response', $response->content);
     }
 
@@ -126,7 +125,7 @@ final class AIServiceTest extends CIUnitTestCase
         $r2 = $service->run(new DefaultDriverPrompt());
 
         // Both succeed — main guarantee is no shared state explosion
-        $this->assertInstanceOf(AIResponse::class, $r1);
-        $this->assertInstanceOf(AIResponse::class, $r2);
+        $this->assertSame('fake-response', $r1->content);
+        $this->assertSame('fake-response', $r2->content);
     }
 }

@@ -26,6 +26,7 @@ final class FakeDriverTest extends CIUnitTestCase
     public function testImplementsAIDriver(): void
     {
         $driver = new FakeDriver();
+        // @phpstan-ignore method.alreadyNarrowedType
         $this->assertInstanceOf(AIDriver::class, $driver);
     }
 
@@ -34,7 +35,6 @@ final class FakeDriverTest extends CIUnitTestCase
         $driver   = new FakeDriver();
         $response = $driver->complete('sys', 'user', null, null, []);
 
-        $this->assertInstanceOf(AIResponse::class, $response);
         $this->assertSame('fake-response', $response->content);
         $this->assertSame('fake-model', $response->model);
         $this->assertSame(0, $response->inputTokens);

@@ -22,10 +22,11 @@ use Myth\Scribe\Config\Services;
  */
 final class ServicesTest extends CIUnitTestCase
 {
-    public function testScribeServiceReturnsAIServiceInstance(): void
+    public function testScribeServiceCanRunWithoutException(): void
     {
+        // Verify service construction succeeds and returns the expected class
         $service = Services::scribe();
-        $this->assertInstanceOf(AIService::class, $service);
+        $this->assertSame(AIService::class, get_class($service));
     }
 
     public function testScribeServiceIsShared(): void

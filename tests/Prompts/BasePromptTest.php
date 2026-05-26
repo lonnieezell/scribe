@@ -72,7 +72,7 @@ final class SchemaPrompt extends BasePrompt
         return 'Give me structured data.';
     }
 
-    public function schema(): ?array
+    public function schema(): array
     {
         return ['type' => 'object', 'properties' => ['name' => ['type' => 'string']]];
     }
@@ -97,7 +97,7 @@ final class BothFormatAndSchemaPrompt extends BasePrompt
         return 'Give me data.';
     }
 
-    public function schema(): ?array
+    public function schema(): array
     {
         return ['type' => 'object'];
     }
@@ -142,7 +142,6 @@ final class BasePromptTest extends CIUnitTestCase
         // We verify the call doesn't throw and returns a string
         $built = $prompt->buildSystemPrompt();
 
-        $this->assertIsString($built);
         $this->assertNotEmpty($built);
     }
 
@@ -183,7 +182,7 @@ final class BasePromptTest extends CIUnitTestCase
                 return 'user';
             }
 
-            public function schema(): ?array
+            public function schema(): array
             {
                 // "\xff" is invalid UTF-8 — json_encode returns false for it
                 return ['bad' => "\xff"];
