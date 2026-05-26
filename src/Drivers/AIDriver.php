@@ -20,6 +20,13 @@ interface AIDriver
     /**
      * Send a completion request to the AI provider.
      *
+     * Note: when $schema is non-null, BasePrompt::buildSystemPrompt() has already
+     * appended the schema as text instructions inside $system. Drivers that support
+     * native structured-output (e.g. Anthropic tool-use, OpenAI response_format) should
+     * use $schema for the API call and MAY ignore the text instructions already in $system
+     * to avoid duplication. Drivers without native support can ignore $schema entirely
+     * and rely on the text in $system.
+     *
      * @param array<string, mixed>|null $schema  JSON schema for structured output
      * @param array<string, mixed>      $options Driver-specific options
      */

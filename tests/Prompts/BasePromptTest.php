@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Tests\Prompts;
 
 use CodeIgniter\Test\CIUnitTestCase;
+use Myth\Scribe\Exceptions\AIException;
 use Myth\Scribe\Prompts\BasePrompt;
 
 /**
@@ -167,5 +168,23 @@ final class BasePromptTest extends CIUnitTestCase
     {
         $prompt = new SimplePrompt();
         $this->assertSame([], $prompt->options);
+    }
+
+    public function testBuildSystemPromptThrowsWhenSchemaCannotBeJsonEncoded(): void
+    {
+        $prompt = new class extends BasePrompt {
+            public function systemPrompt(): string { return 'sys'; }
+
+            public function userPrompt(): string { return 'user'; }
+
+            public function schema(): ?array
+            {
+                // "\xff" is invalid UTF-8 — json_encode returns false for it
+                return ['bad' => "\xff"];
+            }
+        };
+
+        $this->expectException(AIException::class);
+        $prompt->buildSystemPrompt();
     }
 }

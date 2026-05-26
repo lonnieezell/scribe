@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Myth\Scribe\Prompts;
 
+use Myth\Scribe\Exceptions\AIException;
+
 abstract class BasePrompt
 {
     /**
@@ -77,7 +79,12 @@ abstract class BasePrompt
         $system = $this->systemPrompt();
 
         if ($schema !== null) {
-            $system .= "\n\nRespond using the following JSON schema:\n" . json_encode($schema, JSON_PRETTY_PRINT);
+            $encoded = json_encode($schema, JSON_PRETTY_PRINT);
+            if ($encoded === false) {
+                throw new AIException('Failed to JSON-encode schema: ' . json_last_error_msg());
+            }
+
+            $system .= "\n\nRespond using the following JSON schema:\n" . $encoded;
         } elseif ($this->format !== '') {
             $system .= "\n\nRespond in {$this->format} format.";
         }
