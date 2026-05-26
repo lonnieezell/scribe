@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of YourVendor/YourPackage.
+ * This file is part of Myth/Scribe.
  *
  * (c) Your Name <you@example.com>
  *
@@ -38,7 +38,7 @@ $options = [
 ];
 
 return Factory::create(new CodeIgniter4(), $overrides, $options)->forLibrary(
-    'YourVendor/YourPackage',
+    'Myth/Scribe',
     'Your Name',
     'you@example.com',
 );

@@ -18,9 +18,11 @@ parameters:
 		- CodeIgniter\CodeIgniter::CI_VERSION
 	codeigniter:
 		additionalConfigNamespaces:
-			- YourVendor\YourPackage\Config
+			- Myth\Scribe\Config
 		additionalServices:
-			- YourVendor\YourPackage\Config\Services
+			- Myth\Scribe\Config\Services
+		additionalConfig:
+			- Myth\Scribe\Config\AI
 	strictRules:
 		allRules: false
 		disallowedLooseComparison: true

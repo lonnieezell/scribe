@@ -1,4 +1,4 @@
-# YourVendor/YourPackage
+# Myth/Scribe
 
 Welcome to the documentation.
 
