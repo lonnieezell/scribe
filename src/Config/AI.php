@@ -32,17 +32,17 @@ class AI extends BaseConfig
     public array $drivers = [
         'claude' => [
             'apiKey'  => '',
-            'model'   => 'claude-sonnet-4-6',
+            'model'   => 'claude-haiku-4-5',
             'timeout' => 30,
         ],
         'openai' => [
             'apiKey'  => '',
-            'model'   => 'gpt-4o',
+            'model'   => 'gpt-5.4-mini',
             'timeout' => 30,
         ],
         'gemini' => [
             'apiKey'  => '',
-            'model'   => 'gemini-1.5-pro',
+            'model'   => 'gemini-flash-latest',
             'timeout' => 30,
         ],
         'mistral' => [

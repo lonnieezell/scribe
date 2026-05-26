@@ -49,4 +49,9 @@ plugins:
 nav:
   - Home: index.md
   - Installation: installation.md
+  - Core Concepts: core-concepts.md
+  - Prompts: prompts.md
+  - Configuration: configuration.md
+  - AIResponse: ai-response.md
+  - Testing: testing.md
   - Changelog: changelog.md
