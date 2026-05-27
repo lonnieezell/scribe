@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 /**
- * This file is part of YourVendor/YourPackage.
+ * This file is part of Myth/Scribe.
  *
- * (c) Your Name <you@example.com>
+ * (c) Lonnie Ezell <lonnieje@gmail.com>
  *
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
@@ -37,8 +37,15 @@ $options = [
     'cacheFile' => 'build/.php-cs-fixer.cache',
 ];
 
-return Factory::create(new CodeIgniter4(), $overrides, $options)->forLibrary(
-    'YourVendor/YourPackage',
-    'Your Name',
-    'you@example.com',
+// forLibrary() injects header_comment after overrides are merged, so we strip
+// it (and php_unit_internal_class) from the resulting config instead.
+$config = Factory::create(new CodeIgniter4(), $overrides, $options)->forLibrary(
+    'Myth/Scribe',
+    'Lonnie Ezell',
+    'lonnieje@gmail.com',
 );
+
+return $config->setRules(array_merge($config->getRules(), [
+    'header_comment'          => false,
+    'php_unit_internal_class' => false,
+]));

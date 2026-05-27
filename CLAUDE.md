@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-A CodeIgniter 4 package skeleton/template. The placeholder strings `YourVendor`, `YourPackage`, and `vendor/package` throughout the codebase must be replaced before publishing a real package.
+A CodeIgniter 4 package skeleton/template. The placeholder strings `Myth`, `Scribe`, and `lonnieezell/scribe` throughout the codebase must be replaced before publishing a real package.
 
 ## Commands
 
@@ -48,7 +48,7 @@ composer docker:shell     # bash shell inside container
 - `src/Config/Services.php` — extends `BaseService` to register package services available via `service('name')`
 - `src/Exceptions/PackageException.php` — base exception class for the package
 
-**Namespace**: `YourVendor\YourPackage\` maps to `src/`. Test namespace `Tests\` maps to `tests/`, `Tests\Support\` maps to `tests/_support/`.
+**Namespace**: `Myth\Scribe\` maps to `src/`. Test namespace `Tests\` maps to `tests/`, `Tests\Support\` maps to `tests/_support/`.
 
 **PHPUnit bootstrap**: uses `vendor/codeigniter4/framework/system/Test/bootstrap.php` — this is required for CI4 test helpers and must remain in `phpunit.xml.dist`.
 

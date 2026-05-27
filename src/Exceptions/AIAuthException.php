@@ -13,15 +13,9 @@ declare(strict_types=1);
 
 namespace Myth\Scribe\Exceptions;
 
-use RuntimeException;
-
 /**
- * Base exception for all Myth\Scribe package errors.
+ * Thrown when authentication with an AI provider fails.
  */
-class PackageException extends RuntimeException
+class AIAuthException extends AIException
 {
-    public static function forExample(string $message): self
-    {
-        return new self($message);
-    }
 }

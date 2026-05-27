@@ -1,137 +1,173 @@
-# YourVendor/YourPackage
+# Myth/Scribe
 
-A starter template for building CodeIgniter 4 packages. Replace `YourVendor`, `YourPackage`, and related placeholders throughout the codebase before publishing.
+A CodeIgniter 4 package that gives you a clean, driver-based abstraction for talking to AI language models. Point it at Claude, OpenAI, Gemini, or Mistral — your application code stays the same regardless of which provider you use.
 
-## Starting a New Project from This Template
+[![PHPStan](https://img.shields.io/badge/PHPStan-level%205-brightgreen.svg)](https://phpstan.org/)
+[![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue.svg)](https://www.php.net/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-1. Create a new empty repo on GitHub (no README, no .gitignore).
-2. Clone this template and point it at your new repo:
+📖 **[Full Documentation →](https://lonnieezell.github.io/scribe)**
 
-```bash
-git clone https://github.com/lonnieezell/codeigniter-package-skeleton.git your-package-name
-cd your-package-name
-git remote set-url origin https://github.com/YOUR_ORG/your-package-name.git
-git push -u origin main
+---
+
+## What it does
+
+You define a **Prompt** class that describes what you want the AI to do. Scribe takes care of building the system prompt, calling the right provider, and returning a normalized **AIResponse** you can work with in plain PHP.
+
+```php
+<?php
+
+// Define once
+class SummarizePrompt extends BasePrompt
+{
+    public function __construct(private string $text) {}
+
+    public function systemPrompt(): string
+    {
+        return 'You are a concise summarizer. Return a 2-sentence summary.';
+    }
+
+    public function userPrompt(): string
+    {
+        return 'Summarize: ' . $this->text;
+    }
+}
+
+// Use anywhere in your CI4 app
+$response = service('scribe')->run(new SummarizePrompt($articleText));
+echo $response->content;
 ```
 
-3. Find and replace all placeholder strings throughout the codebase:
+## Key Features
 
-| Placeholder | Replace with |
-|---|---|
-| `YourVendor` | Your Composer vendor name (e.g. `Acme`) |
-| `YourPackage` | Your package name (e.g. `MyAddon`) |
-| `vendor/package` | Your Composer package slug (e.g. `acme/my-addon`) |
+- **Driver-based** — swap providers (Claude, OpenAI, Gemini, Mistral) without touching your prompt classes
+- **Structured output** — pass a JSON schema and get typed data back via `toArray()`
+- **Test-friendly** — `FakeDriver` lets you unit-test prompts without any HTTP calls
+- **CI4-native** — auto-discovered via Composer, wired into CI4's service layer; no manual wiring needed
 
-4. Run `composer install` (or `docker compose up`) to install dependencies.
+## What it isn't
 
-> **Note on GitHub Workflows:** The CI workflows in `.github/workflows/` are configured to trigger on PRs targeting `main` or pushes directly to `main`. If your project uses a different branching strategy (e.g., PRs go to `develop`, or you use a `release` branch), update the `branches:` values in each workflow file to match.
+- **No streaming** — responses are returned as a complete string, not streamed token-by-token
+- **No conversation management** — each `run()` call is stateless; multi-turn chat history is your responsibility
+- **No agent loop** — there is no built-in tool-calling or autonomous reasoning loop
+- **Not a full AI framework** — no embeddings, RAG, vector search, or fine-tuning helpers
+- **Not a managed client** — it does not retry, throttle, or rotate API keys on your behalf
+
+If you need those features, this library is intentionally out of scope for them.
 
 ## Requirements
 
 - PHP 8.2+
 - CodeIgniter 4.7+
 
-## Project Structure
+## Installation
 
-```
-src/
-  Config/
-    Registrar.php   # Hooks into CI4's auto-discovery (filters, etc.)
-    Services.php    # Register package services
-  Exceptions/
-    PackageException.php
-tests/
-  ExampleTest.php
-  _support/         # Test helpers and fixtures
-docs/
-  index.md          # Documentation home page
-  installation.md   # Installation guide
-  changelog.md      # Changelog
-mkdocs.yml          # MkDocs configuration (Material theme)
-```
-
-## Getting Started with Docker
-
-The repo includes a Docker setup using PHP 8.4 with all CI4-required extensions and Xdebug for coverage. Dependencies are installed automatically on first run.
-
-Start the dev server (visits `http://localhost:8080` to see the CI4 welcome page):
+Install via Composer:
 
 ```bash
-docker compose up
+composer require lonnieezell/scribe
 ```
 
-Rebuild the image after changing the `Dockerfile`:
+Publish the config file so you can add your API keys:
 
 ```bash
-composer docker:build
+php spark publish:config AI
 ```
 
-## Running Tests
+Then open `app/Config/AI.php` and set at least one driver's `apiKey`:
 
-```bash
-composer docker:test            # run phpunit in Docker
-composer docker:test:coverage   # run with HTML coverage report (build/phpunit/html/)
-
-# or locally
-composer test
-composer test:coverage
+```php
+public array $drivers = [
+    'claude' => [
+        'apiKey' => env('CLAUDE_API_KEY', ''),
+        'model'  => 'claude-haiku-4-5',
+    ],
+    // ...
+];
 ```
 
-## Code Quality
+## Quick Start
 
-```bash
-composer docker:cs          # check coding style
-composer docker:cs-fix      # fix coding style
-composer docker:analyze     # PHPStan + Rector dry-run
-composer docker:rector      # apply Rector changes
-composer docker:ci          # run all checks (style, analysis, tests)
+### 1. Create a Prompt class
 
-# or locally (same commands without the docker: prefix)
-composer cs
-composer cs-fix
-composer analyze
-composer ci
+```php
+<?php
+
+namespace App\Prompts;
+
+use Myth\Scribe\Prompts\BasePrompt;
+
+class ClassifyEmailPrompt extends BasePrompt
+{
+    public function __construct(private string $emailBody) {}
+
+    public function systemPrompt(): string
+    {
+        return 'Classify the email as spam or not_spam.';
+    }
+
+    public function userPrompt(): string
+    {
+        return $this->emailBody;
+    }
+
+    public function schema(): ?array
+    {
+        return [
+            'type'       => 'object',
+            'properties' => ['label' => ['type' => 'string', 'enum' => ['spam', 'not_spam']]],
+            'required'   => ['label'],
+        ];
+    }
+}
 ```
 
-## Docker Shell
+### 2. Run it
 
-Open a bash shell inside the container:
-
-```bash
-composer docker:shell
+```php
+$response = service('scribe')->run(new ClassifyEmailPrompt($body));
+$result   = $response->toArray(); // ['label' => 'spam']
 ```
 
-## Documentation (MkDocs)
+### 3. Test it
 
-Docs live in `docs/` and are built with [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). Update `mkdocs.yml` with your `site_name`, `repo_url`, and `copyright` after cloning.
+```php
+use Myth\Scribe\Drivers\FakeDriver;
 
-**Install MkDocs** (requires Python 3 + pip):
-
-```bash
-pip3 install mkdocs mkdocs-material
+$fake = new FakeDriver(['content' => '{"label":"spam"}']);
+// inject $fake into your service or swap the driver in config
 ```
 
-**Preview locally** (live-reload at `http://127.0.0.1:8000`):
+## Configuration
 
-```bash
-mkdocs serve
+The `AI` config class lives at `app/Config/AI.php` after publishing. The key settings:
+
+| Key | Description |
+|-----|-------------|
+| `$defaultDriver` | Driver used when none is specified on the prompt (default: `'claude'`) |
+| `$drivers['claude']` | Anthropic Claude settings: `apiKey`, `model`, `timeout` |
+| `$drivers['openai']` | OpenAI settings: `apiKey`, `model`, `timeout` |
+| `$drivers['gemini']` | Google Gemini settings: `apiKey`, `model`, `timeout` |
+| `$drivers['mistral']` | Mistral settings: `apiKey`, `model`, `timeout` |
+
+A specific prompt can override the driver at runtime:
+
+```php
+$prompt = new SummarizePrompt($text);
+$prompt->driver = 'openai';
 ```
 
-**Build static output** to `site/`:
+## Documentation
 
-```bash
-mkdocs build
-```
+Full documentation — installation, core concepts, configuration, structured output, testing, and the changelog — is available at:
 
-**Deploy to GitHub Pages** (done automatically by CI, but can be run manually):
+**[https://lonnieezell.github.io/scribe](https://lonnieezell.github.io/scribe)**
 
-```bash
-mkdocs gh-deploy
-```
+## Contributing
 
-## How the Package Integrates with CI4
-
-CI4 auto-discovers your package via `src/Config/Registrar.php`. Add filter aliases, routes, or other config there. Register services in `src/Config/Services.php`. No manual wiring needed in the host app — Composer autoload and CI4's discovery handle it automatically.
+1. Fork the repo and create a feature branch.
+2. Run the full CI suite before opening a PR: `composer ci`
+3. All new code must include tests and pass PHPStan level 5.
 
 ## License
 

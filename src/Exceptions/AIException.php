@@ -13,15 +13,9 @@ declare(strict_types=1);
 
 namespace Myth\Scribe\Exceptions;
 
-use RuntimeException;
-
 /**
- * Base exception for all Myth\Scribe package errors.
+ * Base exception for all AI-related errors in this package.
  */
-class PackageException extends RuntimeException
+class AIException extends PackageException
 {
-    public static function forExample(string $message): self
-    {
-        return new self($message);
-    }
 }

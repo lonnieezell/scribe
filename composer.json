@@ -1,6 +1,6 @@
 {
-    "name": "vendor/package",
-    "description": "A CodeIgniter 4 package",
+    "name": "lonnieezell/scribe",
+    "description": "A simple AI prompting library for CodeIgniter 4",
     "license": "MIT",
     "type": "library",
     "keywords": [
@@ -28,7 +28,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "YourVendor\\YourPackage\\": "src"
+            "Myth\\Scribe\\": "src"
         }
     },
     "autoload-dev": {
