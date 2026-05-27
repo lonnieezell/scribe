@@ -87,10 +87,10 @@ final class ClaudeDriverTest extends CIUnitTestCase
                 $this->anything(),
                 $this->callback(static function (array $opts): bool {
                     $messages = $opts['json']['messages'] ?? [];
-
-                    return count($messages) === 2
-                        && $messages[0] === ['role' => 'user', 'content' => 'Hello']
-                        && $messages[1] === ['role' => 'assistant', 'content' => 'Hi there'];
+                    self::assertCount(2, $messages);
+                    self::assertSame(['role' => 'user', 'content' => 'Hello'], $messages[0]);
+                    self::assertSame(['role' => 'assistant', 'content' => 'Hi there'], $messages[1]);
+                    return true;
                 }),
             )
             ->willReturn($this->makeResponse(200, $body));
@@ -115,17 +115,15 @@ final class ClaudeDriverTest extends CIUnitTestCase
             ->with(
                 'POST',
                 $this->anything(),
-                $this->callback(static function (array $opts): bool {
-                    return ($opts['json']['model'] ?? '') === 'claude-opus-4-7';
+                $this->callback(function (array $opts): bool {
+                    $this->assertSame('claude-opus-4-7', $opts['json']['model'] ?? '');
+                    return true;
                 }),
             )
             ->willReturn($this->makeResponse(200, $body));
 
         $driver = new ClaudeDriver($this->defaultConfig, $client);
         $driver->complete('sys', 'user', null, null, ['model' => 'claude-opus-4-7']);
-
-        // assertion is on the mock expectation above
-        $this->addToAssertionCount(1);
     }
 
     public function testBaseUrlOverrideIsUsed(): void
@@ -146,8 +144,6 @@ final class ClaudeDriverTest extends CIUnitTestCase
 
         $driver = new ClaudeDriver($config, $client);
         $driver->complete('sys', 'user', null, null, []);
-
-        $this->addToAssertionCount(1);
     }
 
     public function testHttp401ThrowsAIAuthException(): void

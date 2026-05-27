@@ -36,8 +36,9 @@ class Services extends BaseService
         /** @var AI $config */
         $config = config('AI');
 
-        $driverKey      = $config->defaultDriver;
-        $driverConfig   = $config->drivers[$driverKey] ?? [];
+        $driverKey    = $config->defaultDriver;
+        $driverConfig = $config->drivers[$driverKey] ?? [];
+        // Only ClaudeDriver is implemented; update this map when additional drivers are added.
         $driverFactories = [
             $driverKey => static fn () => new ClaudeDriver($driverConfig, static::curlrequest()),
         ];

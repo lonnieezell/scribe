@@ -25,8 +25,8 @@ use Myth\Scribe\Exceptions\AIRateLimitException;
  */
 class ClaudeDriver implements AIDriver
 {
-    private const DEFAULT_API_URL = 'https://api.anthropic.com/v1/messages';
-    private const API_VERSION     = '2023-06-01';
+    private const string DEFAULT_API_URL = 'https://api.anthropic.com/v1/messages';
+    private const string API_VERSION     = '2023-06-01';
 
     /**
      * @param array<string, mixed> $config Pre-extracted driver config slice
@@ -66,8 +66,9 @@ class ClaudeDriver implements AIDriver
                     'anthropic-version' => self::API_VERSION,
                     'content-type'      => 'application/json',
                 ],
-                'json'    => $body,
-                'timeout' => $this->config['timeout'] ?? 30,
+                'json'        => $body,
+                'timeout'     => $this->config['timeout'] ?? 30,
+                'http_errors' => false,
             ]);
         } catch (HTTPException $e) {
             throw new AIException('Network error communicating with Claude API: ' . $e->getMessage(), 0, $e);
