@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Myth\Scribe\Exceptions;
 
+/**
+ * Thrown when an AI provider rate-limits the current request.
+ */
 class AIRateLimitException extends AIException
 {
 }

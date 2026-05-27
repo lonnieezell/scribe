@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Myth\Scribe\Exceptions;
 
+/**
+ * Base exception for all AI-related errors in this package.
+ */
 class AIException extends PackageException
 {
 }

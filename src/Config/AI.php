@@ -15,6 +15,9 @@ namespace Myth\Scribe\Config;
 
 use CodeIgniter\Config\BaseConfig;
 
+/**
+ * Package configuration for AI drivers and their credentials.
+ */
 class AI extends BaseConfig
 {
     /**

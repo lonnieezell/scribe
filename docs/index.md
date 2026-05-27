@@ -7,6 +7,8 @@ Scribe is a CodeIgniter 4 package that gives you a clean, driver-based abstracti
 You define a **Prompt** class that describes what you want the AI to do. Scribe takes care of building the system prompt, calling the right provider, and returning a normalized **AIResponse** you can work with in plain PHP.
 
 ```php
+<?php
+
 // Define once
 class SummarizePrompt extends BasePrompt
 {

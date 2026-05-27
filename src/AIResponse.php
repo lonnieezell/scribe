@@ -15,6 +15,9 @@ namespace Myth\Scribe;
 
 use Myth\Scribe\Exceptions\AIException;
 
+/**
+ * Holds the normalized response returned by an AI provider.
+ */
 readonly class AIResponse
 {
     /**

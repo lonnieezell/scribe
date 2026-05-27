@@ -37,8 +37,15 @@ $options = [
     'cacheFile' => 'build/.php-cs-fixer.cache',
 ];
 
-return Factory::create(new CodeIgniter4(), $overrides, $options)->forLibrary(
+// forLibrary() injects header_comment after overrides are merged, so we strip
+// it (and php_unit_internal_class) from the resulting config instead.
+$config = Factory::create(new CodeIgniter4(), $overrides, $options)->forLibrary(
     'Myth/Scribe',
     'Lonnie Ezell',
     'lonnieje@gmail.com',
 );
+
+return $config->setRules(array_merge($config->getRules(), [
+    'header_comment'          => false,
+    'php_unit_internal_class' => false,
+]));

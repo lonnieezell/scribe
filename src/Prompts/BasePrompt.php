@@ -15,6 +15,9 @@ namespace Myth\Scribe\Prompts;
 
 use Myth\Scribe\Exceptions\AIException;
 
+/**
+ * Abstract base for building typed, reusable AI prompts.
+ */
 abstract class BasePrompt
 {
     /**

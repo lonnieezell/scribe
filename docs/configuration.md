@@ -5,6 +5,8 @@ All of Scribe's settings live in `app/Config/AI.php` after you [publish the conf
 ## defaultDriver
 
 ```php
+<?php
+
 public string $defaultDriver = 'claude';
 ```
 
@@ -13,12 +15,16 @@ The driver key to use when a prompt doesn't specify one. Must match a key in the
 Change it to switch providers globally:
 
 ```php
+<?php
+
 public string $defaultDriver = 'openai';
 ```
 
 ## drivers
 
 ```php
+<?php
+
 public array $drivers = [
     'claude'  => [...],
     'openai'  => [...],
@@ -43,6 +49,8 @@ Every driver supports these keys:
 ### Example: full config
 
 ```php
+<?php
+
 public array $drivers = [
     'claude' => [
         'apiKey'  => env('ANTHROPIC_API_KEY', ''),
@@ -72,6 +80,8 @@ public array $drivers = [
 The optional `baseUrl` key lets you point a driver at a compatible API endpoint — useful for local models or proxies:
 
 ```php
+<?php
+
 'openai' => [
     'apiKey'  => 'not-needed',
     'model'   => 'local-llama',
@@ -85,6 +95,8 @@ The optional `baseUrl` key lets you point a driver at a compatible API endpoint 
 You can add your own driver key for any provider that has a matching Scribe driver package:
 
 ```php
+<?php
+
 public string $defaultDriver = 'my-provider';
 
 public array $drivers = [

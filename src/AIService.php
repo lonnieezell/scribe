@@ -18,6 +18,9 @@ use Myth\Scribe\Drivers\AIDriver;
 use Myth\Scribe\Exceptions\AIException;
 use Myth\Scribe\Prompts\BasePrompt;
 
+/**
+ * Resolves an AI driver from config and executes a prompt against it.
+ */
 class AIService
 {
     /**

@@ -33,7 +33,7 @@ git push -u origin main
 
 ## Project Structure
 
-```
+```text
 src/
   Config/
     Registrar.php   # Hooks into CI4's auto-discovery (filters, etc.)

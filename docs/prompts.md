@@ -7,6 +7,8 @@ A prompt is a class that encapsulates everything the AI needs to know about a si
 Two abstract methods are required:
 
 ```php
+<?php
+
 class TranslatePrompt extends BasePrompt
 {
     public function __construct(
@@ -29,6 +31,8 @@ class TranslatePrompt extends BasePrompt
 Pass it to the service:
 
 ```php
+<?php
+
 $response = service('scribe')->run(new TranslatePrompt('Hello!', 'French'));
 echo $response->content; // "Bonjour !"
 ```
@@ -38,6 +42,8 @@ echo $response->content; // "Bonjour !"
 Set `$format` to append a format instruction to the system prompt automatically:
 
 ```php
+<?php
+
 class SentimentPrompt extends BasePrompt
 {
     public string $format = 'json';
@@ -58,6 +64,8 @@ Scribe appends `"\n\nRespond in json format."` to your system prompt. Simple and
 For precise structured output, override `schema()` instead of setting `$format`. Scribe encodes your schema and appends it to the system prompt:
 
 ```php
+<?php
+
 class ExtractContactPrompt extends BasePrompt
 {
     public function systemPrompt(): string
@@ -94,6 +102,8 @@ $data = service('scribe')->run(new ExtractContactPrompt($text))->toArray();
 Some providers (notably Claude) support an assistant prefill — text that primes the model's response. Override `assistant()` to use it:
 
 ```php
+<?php
+
 public function assistant(): ?string
 {
     return '{"'; // nudge the model to start a JSON object
@@ -105,6 +115,8 @@ public function assistant(): ?string
 By default every prompt uses the driver configured in `Config/AI::$defaultDriver`. Override it per-prompt when you need a specific provider for a specific task:
 
 ```php
+<?php
+
 class ModerationPrompt extends BasePrompt
 {
     public ?string $driver = 'openai'; // always use OpenAI for this one
@@ -118,6 +130,8 @@ class ModerationPrompt extends BasePrompt
 `$options` is an escape hatch for provider-specific settings that don't fit the standard interface:
 
 ```php
+<?php
+
 class CreativePrompt extends BasePrompt
 {
     public array $options = [

@@ -7,6 +7,8 @@ Scribe ships with `FakeDriver` — an in-memory driver that returns whatever you
 Construct an `AIService` directly with `FakeDriver` factories instead of using `service('scribe')`:
 
 ```php
+<?php
+
 use Myth\Scribe\AIService;
 use Myth\Scribe\Config\AI;
 use Myth\Scribe\Drivers\FakeDriver;
@@ -29,6 +31,8 @@ $this->assertSame('fake-response', $response->content);
 Pass an `AIResponse` into `FakeDriver`'s constructor to control exactly what comes back:
 
 ```php
+<?php
+
 use Myth\Scribe\AIResponse;
 use Myth\Scribe\Drivers\FakeDriver;
 
@@ -58,6 +62,8 @@ This lets you test the full round-trip — including `toArray()` decoding and an
 To test that your code handles a non-JSON response gracefully:
 
 ```php
+<?php
+
 $badResponse = new AIResponse(
     content: 'Sorry, I cannot help with that.',
     model: 'claude-haiku-4-5',
@@ -81,6 +87,8 @@ $service->run(new MyStructuredPrompt())->toArray();
 To verify that `buildSystemPrompt()` produces the right output, test the prompt class directly:
 
 ```php
+<?php
+
 $prompt = new ClassifyEmailPrompt('Buy cheap meds now!!!');
 
 $this->assertStringContainsString('Classify', $prompt->buildSystemPrompt());
@@ -95,6 +103,8 @@ Prompt classes are plain PHP — no service container needed. Test them directly
 Verify that your code handles an unregistered driver key gracefully:
 
 ```php
+<?php
+
 $config = new AI();
 $config->defaultDriver = 'nonexistent';
 
@@ -109,6 +119,8 @@ $service->run(new MyPrompt());
 If you're writing `CIUnitTestCase` tests, extend the base class as usual — the CI4 test bootstrap (set in `phpunit.xml.dist`) handles service container setup automatically:
 
 ```php
+<?php
+
 use CodeIgniter\Test\CIUnitTestCase;
 use Myth\Scribe\AIService;
 use Myth\Scribe\Config\AI;

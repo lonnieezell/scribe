@@ -17,11 +17,6 @@ use CodeIgniter\Test\CIUnitTestCase;
 use Myth\Scribe\Exceptions\AIException;
 use Myth\Scribe\Prompts\BasePrompt;
 
-/**
- * Minimal concrete prompt for testing.
- *
- * @internal
- */
 final class SimplePrompt extends BasePrompt
 {
     public function systemPrompt(): string
@@ -35,11 +30,6 @@ final class SimplePrompt extends BasePrompt
     }
 }
 
-/**
- * Prompt that sets a format.
- *
- * @internal
- */
 final class FormattedPrompt extends BasePrompt
 {
     public string $format = 'json';
@@ -55,11 +45,6 @@ final class FormattedPrompt extends BasePrompt
     }
 }
 
-/**
- * Prompt that returns a schema.
- *
- * @internal
- */
 final class SchemaPrompt extends BasePrompt
 {
     public function systemPrompt(): string
@@ -78,11 +63,6 @@ final class SchemaPrompt extends BasePrompt
     }
 }
 
-/**
- * Prompt that sets both format AND schema (should trigger warning).
- *
- * @internal
- */
 final class BothFormatAndSchemaPrompt extends BasePrompt
 {
     public string $format = 'json';

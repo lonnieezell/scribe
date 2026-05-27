@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Myth\Scribe\Exceptions;
 
+/**
+ * Thrown when authentication with an AI provider fails.
+ */
 class AIAuthException extends AIException
 {
 }

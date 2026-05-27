@@ -24,6 +24,8 @@ php spark config:publish Myth\Scribe\Config\AI
 This creates `app/Config/AI.php`. Open it and add your API key for whichever provider you want to use:
 
 ```php
+<?php
+
 // app/Config/AI.php
 public array $drivers = [
     'claude' => [
@@ -43,6 +45,8 @@ public array $drivers = [
 Run this in a controller or a quick Spark command to confirm everything is wired up:
 
 ```php
+<?php
+
 $service = service('scribe');
 // Should return an AIService instance — no exception means you're good.
 var_dump(get_class($service)); // "Myth\Scribe\AIService"

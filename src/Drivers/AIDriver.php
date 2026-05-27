@@ -15,6 +15,9 @@ namespace Myth\Scribe\Drivers;
 
 use Myth\Scribe\AIResponse;
 
+/**
+ * Contract that all AI driver implementations must fulfil.
+ */
 interface AIDriver
 {
     /**

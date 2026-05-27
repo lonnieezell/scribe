@@ -4,7 +4,7 @@ Scribe has four moving parts. Once you understand how they fit together, everyth
 
 ## The flow
 
-```
+```text
 Your code
   → BasePrompt   (what to ask)
   → AIService    (which driver to use)
@@ -17,6 +17,8 @@ Your code
 A **Prompt** is a plain PHP class that knows what to say to the AI. You extend `BasePrompt` and implement two methods:
 
 ```php
+<?php
+
 class ClassifyEmailPrompt extends BasePrompt
 {
     public function systemPrompt(): string
@@ -47,6 +49,8 @@ See [Prompts](prompts.md) for details on all of these.
 `AIService` is the engine. You get it via CI4's service locator:
 
 ```php
+<?php
+
 $service = service('scribe');
 $response = $service->run(new ClassifyEmailPrompt($body));
 ```
@@ -64,6 +68,8 @@ You don't subclass `AIService`. You configure it via `Config/AI.php`.
 A **Driver** is the adapter that talks to one AI provider. The `AIDriver` interface defines a single method:
 
 ```php
+<?php
+
 interface AIDriver
 {
     public function complete(
@@ -83,6 +89,8 @@ Scribe ships with `FakeDriver` for testing. Real HTTP drivers (Claude, OpenAI, G
 Every `run()` call returns an `AIResponse` — a readonly value object:
 
 ```php
+<?php
+
 $response->content       // the model's reply (string)
 $response->model         // which model was used
 $response->inputTokens   // tokens consumed by your prompt
@@ -93,6 +101,8 @@ $response->raw           // the full provider response (array)
 When you asked for structured JSON output, call `toArray()` to decode it:
 
 ```php
+<?php
+
 $data = $response->toArray(); // ['label' => 'SPAM', 'confidence' => 0.92]
 ```
 

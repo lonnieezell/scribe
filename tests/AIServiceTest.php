@@ -21,11 +21,6 @@ use Myth\Scribe\Drivers\FakeDriver;
 use Myth\Scribe\Exceptions\AIException;
 use Myth\Scribe\Prompts\BasePrompt;
 
-/**
- * Prompt with no driver override.
- *
- * @internal
- */
 final class DefaultDriverPrompt extends BasePrompt
 {
     public function systemPrompt(): string
@@ -39,11 +34,6 @@ final class DefaultDriverPrompt extends BasePrompt
     }
 }
 
-/**
- * Prompt that overrides the driver key.
- *
- * @internal
- */
 final class OverrideDriverPrompt extends BasePrompt
 {
     public ?string $driver = 'openai';

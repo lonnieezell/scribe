@@ -16,6 +16,9 @@ namespace Myth\Scribe\Config;
 use CodeIgniter\Config\BaseService;
 use Myth\Scribe\AIService;
 
+/**
+ * Registers package services with the CodeIgniter 4 service container.
+ */
 class Services extends BaseService
 {
     /**

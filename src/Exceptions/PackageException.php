@@ -15,6 +15,9 @@ namespace Myth\Scribe\Exceptions;
 
 use RuntimeException;
 
+/**
+ * Base exception for all Myth\Scribe package errors.
+ */
 class PackageException extends RuntimeException
 {
     public static function forExample(string $message): self
