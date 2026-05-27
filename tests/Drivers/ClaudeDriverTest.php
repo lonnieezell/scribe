@@ -90,6 +90,7 @@ final class ClaudeDriverTest extends CIUnitTestCase
                     self::assertCount(2, $messages);
                     self::assertSame(['role' => 'user', 'content' => 'Hello'], $messages[0]);
                     self::assertSame(['role' => 'assistant', 'content' => 'Hi there'], $messages[1]);
+
                     return true;
                 }),
             )
@@ -117,6 +118,7 @@ final class ClaudeDriverTest extends CIUnitTestCase
                 $this->anything(),
                 $this->callback(function (array $opts): bool {
                     $this->assertSame('claude-opus-4-7', $opts['json']['model'] ?? '');
+
                     return true;
                 }),
             )
