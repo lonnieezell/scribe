@@ -774,7 +774,7 @@
 </code></pre></div>
 <p>Scribe appends <code>"\n\nRespond in json format."</code> to your system prompt. Simple and non-prescriptive — useful when you want JSON but don't need to enforce a specific shape.</p>
 <h2 id="structured-output-with-schema">Structured output with schema()</h2>
-<p>For precise structured output, override <code>schema()</code> instead of setting <code>$format</code>. Scribe encodes your schema and appends it to the system prompt:</p>
+<p>For precise structured output, override <code>schema()</code> instead of setting <code>$format</code>. Scribe passes the schema to the driver. Drivers with native structured-output support (OpenAI) enforce the schema at the API level via <code>response_format</code>; other drivers (Claude) encode it as instructions in the system prompt:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">class</span> <span class="nc">ExtractContactPrompt</span> <span class="k">extends</span> <span class="nx">BasePrompt</span>
@@ -809,7 +809,7 @@
 <p>If you set <code>$format</code> and also return a non-null <code>schema()</code>, Scribe uses the schema and logs a warning. The format hint is ignored. Pick one.</p>
 </div>
 <h2 id="assistant-prefill">Assistant prefill</h2>
-<p>Some providers (notably Claude) support an assistant prefill — text that primes the model's response. Override <code>assistant()</code> to use it:</p>
+<p>Both Claude and OpenAI support an assistant prefill — text that primes the start of the model's response. Override <code>assistant()</code> to use it:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">assistant</span><span class="p">()</span><span class="o">:</span> <span class="o">?</span><span class="nx">string</span>
