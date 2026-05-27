@@ -15,6 +15,7 @@ namespace Myth\Scribe\Config;
 
 use CodeIgniter\Config\BaseService;
 use Myth\Scribe\AIService;
+use Myth\Scribe\Drivers\ClaudeDriver;
 
 /**
  * Registers package services with the CodeIgniter 4 service container.
@@ -35,9 +36,13 @@ class Services extends BaseService
         /** @var AI $config */
         $config = config('AI');
 
-        // Driver factories are intentionally empty here; real HTTP drivers will be
-        // registered in a subsequent slice. Use AIService directly with explicit
-        // factories in tests, or extend this method in your application's Services.
-        return new AIService($config, []);
+        $driverKey    = $config->defaultDriver;
+        $driverConfig = $config->drivers[$driverKey] ?? [];
+        // Only ClaudeDriver is implemented; update this map when additional drivers are added.
+        $driverFactories = [
+            $driverKey => static fn () => new ClaudeDriver($driverConfig, static::curlrequest()),
+        ];
+
+        return new AIService($config, $driverFactories);
     }
 }

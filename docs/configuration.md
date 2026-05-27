@@ -44,6 +44,7 @@ Every driver supports these keys:
 | `apiKey` | string | `''` | Your API key for this provider |
 | `model` | string | provider default | The model to use for completion requests |
 | `timeout` | int | `30` | Request timeout in seconds |
+| `maxTokens` | int | `4096` | Maximum tokens the model may generate (Claude only) |
 | `baseUrl` | string | *(optional)* | Override the provider's API endpoint |
 
 ### Example: full config
@@ -53,9 +54,10 @@ Every driver supports these keys:
 
 public array $drivers = [
     'claude' => [
-        'apiKey'  => env('ANTHROPIC_API_KEY', ''),
-        'model'   => 'claude-haiku-4-5',
-        'timeout' => 30,
+        'apiKey'    => env('ANTHROPIC_API_KEY', ''),
+        'model'     => 'claude-haiku-4-5',
+        'timeout'   => 30,
+        'maxTokens' => 4096,
     ],
     'openai' => [
         'apiKey'  => env('OPENAI_API_KEY', ''),

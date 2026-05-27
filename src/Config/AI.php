@@ -34,9 +34,10 @@ class AI extends BaseConfig
      */
     public array $drivers = [
         'claude' => [
-            'apiKey'  => '',
-            'model'   => 'claude-haiku-4-5',
-            'timeout' => 30,
+            'apiKey'    => '',
+            'model'     => 'claude-haiku-4-5',
+            'timeout'   => 30,
+            'maxTokens' => 4096,
         ],
         'openai' => [
             'apiKey'  => '',
