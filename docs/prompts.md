@@ -61,7 +61,7 @@ Scribe appends `"\n\nRespond in json format."` to your system prompt. Simple and
 
 ## Structured output with schema()
 
-For precise structured output, override `schema()` instead of setting `$format`. Scribe encodes your schema and appends it to the system prompt:
+For precise structured output, override `schema()` instead of setting `$format`. Scribe passes the schema to the driver. Drivers with native structured-output support (OpenAI) enforce the schema at the API level via `response_format`; other drivers (Claude) encode it as instructions in the system prompt:
 
 ```php
 <?php
@@ -99,7 +99,7 @@ $data = service('scribe')->run(new ExtractContactPrompt($text))->toArray();
 
 ## Assistant prefill
 
-Some providers (notably Claude) support an assistant prefill — text that primes the model's response. Override `assistant()` to use it:
+Both Claude and OpenAI support an assistant prefill — text that primes the start of the model's response. Override `assistant()` to use it:
 
 ```php
 <?php
