@@ -50,10 +50,14 @@ class AI extends BaseConfig
             'timeout'   => 30,
             'maxTokens' => null,
         ],
-        'mistral' => [
-            'apiKey'  => '',
-            'model'   => 'mistral-large-latest',
-            'timeout' => 30,
-        ],
     ];
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->drivers['claude']['apiKey'] = env('ANTHROPIC_API_KEY', '');
+        $this->drivers['openai']['apiKey'] = env('OPENAI_API_KEY', '');
+        $this->drivers['gemini']['apiKey'] = env('GOOGLE_API_KEY', '');
+    }
 }

@@ -1,6 +1,6 @@
 # Myth/Scribe
 
-Scribe is a CodeIgniter 4 package that gives you a clean, driver-based abstraction for talking to AI language models. Point it at Claude, OpenAI, Gemini, or Mistral — your application code stays the same regardless of which provider you use.
+Scribe is a CodeIgniter 4 package that gives you a clean, driver-based abstraction for talking to AI language models. Point it at Claude, OpenAI, or Gemini — your application code stays the same regardless of which provider you use.
 
 ## What it does
 

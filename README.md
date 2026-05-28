@@ -1,6 +1,6 @@
 # Myth/Scribe
 
-A CodeIgniter 4 package that gives you a clean, driver-based abstraction for talking to AI language models. Point it at Claude, OpenAI, Gemini, or Mistral — your application code stays the same regardless of which provider you use.
+A CodeIgniter 4 package that gives you a clean, driver-based abstraction for talking to AI language models. Point it at Claude, OpenAI, or Gemini — your application code stays the same regardless of which provider you use.
 
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%205-brightgreen.svg)](https://phpstan.org/)
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue.svg)](https://www.php.net/)
@@ -40,7 +40,7 @@ echo $response->content;
 
 ## Key Features
 
-- **Driver-based** — swap providers (Claude, OpenAI, Gemini, Mistral) without touching your prompt classes
+- **Driver-based** — swap providers (Claude, OpenAI, Gemini) without touching your prompt classes
 - **Structured output** — pass a JSON schema and get typed data back via `toArray()`
 - **Test-friendly** — `FakeDriver` lets you unit-test prompts without any HTTP calls
 - **CI4-native** — auto-discovered via Composer, wired into CI4's service layer; no manual wiring needed
@@ -148,7 +148,6 @@ The `AI` config class lives at `app/Config/AI.php` after publishing. The key set
 | `$drivers['claude']` | Anthropic Claude settings: `apiKey`, `model`, `timeout` |
 | `$drivers['openai']` | OpenAI settings: `apiKey`, `model`, `timeout` |
 | `$drivers['gemini']` | Google Gemini settings: `apiKey`, `model`, `timeout` |
-| `$drivers['mistral']` | Mistral settings: `apiKey`, `model`, `timeout` |
 
 A specific prompt can override the driver at runtime:
 

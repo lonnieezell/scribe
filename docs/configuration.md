@@ -29,7 +29,6 @@ public array $drivers = [
     'claude'  => [...],
     'openai'  => [...],
     'gemini'  => [...],
-    'mistral' => [...],
 ];
 ```
 
@@ -70,11 +69,6 @@ public array $drivers = [
         'timeout'   => 30,
         'maxTokens' => null,  // set an int to cap output tokens
     ],
-    'mistral' => [
-        'apiKey'  => env('MISTRAL_API_KEY', ''),
-        'model'   => 'mistral-large-latest',
-        'timeout' => 30,
-    ],
 ];
 ```
 
@@ -113,6 +107,24 @@ public array $drivers = [
 
 !!! note
     Scribe doesn't validate driver keys at config-load time. If you reference a key with no registered driver factory, `AIService::run()` throws `AIException` with a clear message.
+
+## API key management
+
+Never put real API keys directly in `app/Config/AI.php`. The config file is typically committed to version control — keys embedded there will be exposed.
+
+Instead, store keys in your `.env` file and reference them via `env()`, which is what the default config already does:
+
+```php
+'apiKey' => env('ANTHROPIC_API_KEY', ''),
+```
+
+A `.env.example` is included in this package as a starting point. Copy it to `.env` in your project root and fill in the keys for the drivers you use:
+
+```bash
+cp vendor/myth/scribe/.env.example .env
+```
+
+Make sure `.env` is listed in your `.gitignore` (CI4 projects include this by default).
 
 ## Next steps
 

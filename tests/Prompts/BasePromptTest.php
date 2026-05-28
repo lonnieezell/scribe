@@ -117,12 +117,9 @@ final class BasePromptTest extends CIUnitTestCase
     public function testBuildSystemPromptLogsWarningWhenBothFormatAndSchemaSet(): void
     {
         $prompt = new BothFormatAndSchemaPrompt();
+        $prompt->buildSystemPrompt();
 
-        // Capture log output - CI4's log_message writes to the log file
-        // We verify the call doesn't throw and returns a string
-        $built = $prompt->buildSystemPrompt();
-
-        $this->assertNotEmpty($built);
+        $this->assertLogged('warning', 'BasePrompt: both $format and schema() are set; schema() takes precedence.');
     }
 
     public function testAssistantReturnsNullByDefault(): void
