@@ -16,6 +16,7 @@ namespace Myth\Scribe\Config;
 use CodeIgniter\Config\BaseService;
 use Myth\Scribe\AIService;
 use Myth\Scribe\Drivers\ClaudeDriver;
+use Myth\Scribe\Drivers\GeminiDriver;
 use Myth\Scribe\Drivers\OpenAIDriver;
 
 /**
@@ -40,6 +41,7 @@ class Services extends BaseService
         $driverFactories = [
             'claude' => static fn () => new ClaudeDriver($config->drivers['claude'] ?? [], static::curlrequest()),
             'openai' => static fn () => new OpenAIDriver($config->drivers['openai'] ?? [], static::curlrequest()),
+            'gemini' => static fn () => new GeminiDriver($config->drivers['gemini'] ?? [], static::curlrequest()),
         ];
 
         return new AIService($config, $driverFactories);

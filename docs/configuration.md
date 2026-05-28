@@ -44,7 +44,7 @@ Every driver supports these keys:
 | `apiKey` | string | `''` | Your API key for this provider |
 | `model` | string | provider default | The model to use for completion requests |
 | `timeout` | int | `30` | Request timeout in seconds |
-| `maxTokens` | int | `4096` | Maximum tokens the model may generate (Claude only) |
+| `maxTokens` | int | varies | Maximum tokens the model may generate (Claude and Gemini; omit for OpenAI to use provider default) |
 | `baseUrl` | string | *(optional)* | Override the provider's API endpoint |
 
 ### Example: full config
@@ -65,9 +65,10 @@ public array $drivers = [
         'timeout' => 30,
     ],
     'gemini' => [
-        'apiKey'  => env('GOOGLE_API_KEY', ''),
-        'model'   => 'gemini-flash-latest',
-        'timeout' => 30,
+        'apiKey'    => env('GOOGLE_API_KEY', ''),
+        'model'     => 'gemini-flash-latest',
+        'timeout'   => 30,
+        'maxTokens' => null,  // set an int to cap output tokens
     ],
     'mistral' => [
         'apiKey'  => env('MISTRAL_API_KEY', ''),

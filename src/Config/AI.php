@@ -45,9 +45,10 @@ class AI extends BaseConfig
             'timeout' => 30,
         ],
         'gemini' => [
-            'apiKey'  => '',
-            'model'   => 'gemini-flash-latest',
-            'timeout' => 30,
+            'apiKey'    => '',
+            'model'     => 'gemini-flash-latest',
+            'timeout'   => 30,
+            'maxTokens' => null,
         ],
         'mistral' => [
             'apiKey'  => '',
