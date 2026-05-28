@@ -795,8 +795,8 @@
 <tr>
 <td><code>maxTokens</code></td>
 <td>int</td>
-<td><code>4096</code></td>
-<td>Maximum tokens the model may generate (Claude only)</td>
+<td>varies</td>
+<td>Maximum tokens the model may generate (Claude and Gemini; omit for OpenAI to use provider default)</td>
 </tr>
 <tr>
 <td><code>baseUrl</code></td>
@@ -822,16 +822,17 @@
 <a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="s1">&#39;timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
 <a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="p">],</span>
 <a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="s1">&#39;gemini&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="s1">&#39;apiKey&#39;</span>  <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;GOOGLE_API_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="s1">&#39;model&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;gemini-flash-latest&#39;</span><span class="p">,</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="s1">&#39;timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="p">],</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="s1">&#39;mistral&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>        <span class="s1">&#39;apiKey&#39;</span>  <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;MISTRAL_API_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>        <span class="s1">&#39;model&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;mistral-large-latest&#39;</span><span class="p">,</span>
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>        <span class="s1">&#39;timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>    <span class="p">],</span>
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="p">];</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="s1">&#39;apiKey&#39;</span>    <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;GOOGLE_API_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="s1">&#39;model&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;gemini-flash-latest&#39;</span><span class="p">,</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="s1">&#39;timeout&#39;</span>   <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>        <span class="s1">&#39;maxTokens&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>  <span class="c1">// set an int to cap output tokens</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="p">],</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    <span class="s1">&#39;mistral&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>        <span class="s1">&#39;apiKey&#39;</span>  <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;MISTRAL_API_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>        <span class="s1">&#39;model&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;mistral-large-latest&#39;</span><span class="p">,</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>        <span class="s1">&#39;timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    <span class="p">],</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="p">];</span>
 </code></pre></div>
 <h3 id="using-a-custom-endpoint">Using a custom endpoint</h3>
 <p>The optional <code>baseUrl</code> key lets you point a driver at a compatible API endpoint — useful for local models or proxies:</p>
