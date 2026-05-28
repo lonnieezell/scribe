@@ -20,8 +20,4 @@ use RuntimeException;
  */
 class PackageException extends RuntimeException
 {
-    public static function forExample(string $message): self
-    {
-        return new self($message);
-    }
 }
