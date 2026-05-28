@@ -15,17 +15,16 @@ namespace Tests\Drivers;
 
 use CodeIgniter\HTTP\CURLRequest;
 use CodeIgniter\HTTP\Exceptions\HTTPException;
-use CodeIgniter\HTTP\ResponseInterface;
-use CodeIgniter\Test\CIUnitTestCase;
 use Myth\Scribe\Drivers\ClaudeDriver;
 use Myth\Scribe\Exceptions\AIAuthException;
 use Myth\Scribe\Exceptions\AIException;
 use Myth\Scribe\Exceptions\AIRateLimitException;
+use Tests\Support\DriverTestCase;
 
 /**
  * @internal
  */
-final class ClaudeDriverTest extends CIUnitTestCase
+final class ClaudeDriverTest extends DriverTestCase
 {
     private array $defaultConfig = [
         'apiKey'    => 'test-key',
@@ -33,23 +32,6 @@ final class ClaudeDriverTest extends CIUnitTestCase
         'timeout'   => 30,
         'maxTokens' => 4096,
     ];
-
-    private function makeResponse(int $status, mixed $body): ResponseInterface
-    {
-        $response = $this->createMock(ResponseInterface::class);
-        $response->method('getStatusCode')->willReturn($status);
-        $response->method('getBody')->willReturn(is_string($body) ? $body : json_encode($body));
-
-        return $response;
-    }
-
-    private function makeClient(ResponseInterface $response): CURLRequest
-    {
-        $client = $this->createMock(CURLRequest::class);
-        $client->method('request')->willReturn($response);
-
-        return $client;
-    }
 
     public function testHappyPathReturnsMappedAIResponse(): void
     {
