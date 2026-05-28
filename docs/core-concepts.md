@@ -82,7 +82,7 @@ interface AIDriver
 }
 ```
 
-Scribe ships with `FakeDriver` for testing. Real HTTP drivers (Claude, OpenAI, Gemini, Mistral) are registered by driver packages built on top of this foundation.
+Scribe ships with `FakeDriver` for testing. Real HTTP drivers (Claude, OpenAI, Gemini) are registered by driver packages built on top of this foundation.
 
 ## AIResponse
 

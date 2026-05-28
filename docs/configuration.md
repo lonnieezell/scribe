@@ -29,7 +29,6 @@ public array $drivers = [
     'claude'  => [...],
     'openai'  => [...],
     'gemini'  => [...],
-    'mistral' => [...],
 ];
 ```
 
@@ -69,11 +68,6 @@ public array $drivers = [
         'model'     => 'gemini-flash-latest',
         'timeout'   => 30,
         'maxTokens' => null,  // set an int to cap output tokens
-    ],
-    'mistral' => [
-        'apiKey'  => env('MISTRAL_API_KEY', ''),
-        'model'   => 'mistral-large-latest',
-        'timeout' => 30,
     ],
 ];
 ```

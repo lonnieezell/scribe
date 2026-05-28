@@ -68,7 +68,6 @@ final class AIServiceTest extends CIUnitTestCase
             'claude'  => static fn () => new FakeDriver(),
             'openai'  => static fn () => new FakeDriver(new AIResponse('openai-response', 'gpt-4o', 1, 2, [])),
             'gemini'  => static fn () => new FakeDriver(),
-            'mistral' => static fn () => new FakeDriver(),
             'fake'    => static fn () => new FakeDriver(),
         ];
 

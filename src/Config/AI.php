@@ -50,10 +50,5 @@ class AI extends BaseConfig
             'timeout'   => 30,
             'maxTokens' => null,
         ],
-        'mistral' => [
-            'apiKey'  => '',
-            'model'   => 'mistral-large-latest',
-            'timeout' => 30,
-        ],
     ];
 }

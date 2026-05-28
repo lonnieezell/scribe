@@ -30,7 +30,7 @@ final class AIConfigTest extends CIUnitTestCase
     public function testHasDriverEntries(): void
     {
         $config  = new AI();
-        $drivers = ['claude', 'openai', 'gemini', 'mistral'];
+        $drivers = ['claude', 'openai', 'gemini'];
 
         foreach ($drivers as $key) {
             $this->assertArrayHasKey($key, $config->drivers, "Driver '{$key}' missing from config");
