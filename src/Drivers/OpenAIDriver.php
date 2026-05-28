@@ -61,6 +61,11 @@ class OpenAIDriver implements AIDriver
         }
 
         if ($schema !== null) {
+            $pos = strpos($system, AIDriver::SCHEMA_SYSTEM_MARKER);
+            if ($pos !== false) {
+                $system = substr($system, 0, $pos);
+            }
+
             $body['response_format'] = [
                 'type'        => 'json_schema',
                 'json_schema' => [

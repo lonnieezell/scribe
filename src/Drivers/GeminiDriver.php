@@ -56,11 +56,6 @@ class GeminiDriver implements AIDriver
             $contents[] = ['role' => 'user', 'parts' => [['text' => $user]]];
         }
 
-        $body = [
-            'systemInstruction' => ['parts' => [['text' => $system]]],
-            'contents'          => $contents,
-        ];
-
         $generationConfig = [];
 
         if (isset($this->config['maxTokens'])) {
@@ -68,9 +63,19 @@ class GeminiDriver implements AIDriver
         }
 
         if ($schema !== null) {
+            $pos = strpos($system, AIDriver::SCHEMA_SYSTEM_MARKER);
+            if ($pos !== false) {
+                $system = substr($system, 0, $pos);
+            }
+
             $generationConfig['responseSchema']   = $schema;
             $generationConfig['responseMimeType'] = 'application/json';
         }
+
+        $body = [
+            'systemInstruction' => ['parts' => [['text' => $system]]],
+            'contents'          => $contents,
+        ];
 
         if ($generationConfig !== []) {
             $body['generationConfig'] = $generationConfig;
