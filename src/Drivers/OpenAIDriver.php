@@ -13,27 +13,19 @@ declare(strict_types=1);
 
 namespace Myth\Scribe\Drivers;
 
-use CodeIgniter\HTTP\CURLRequest;
-use CodeIgniter\HTTP\Exceptions\HTTPException;
 use Myth\Scribe\AIResponse;
-use Myth\Scribe\Exceptions\AIAuthException;
 use Myth\Scribe\Exceptions\AIException;
-use Myth\Scribe\Exceptions\AIRateLimitException;
 
 /**
  * AI driver for OpenAI via the /v1/chat/completions API.
  */
-class OpenAIDriver implements AIDriver
+class OpenAIDriver extends AbstractHttpDriver
 {
     private const DEFAULT_API_URL = 'https://api.openai.com/v1/chat/completions';
 
-    /**
-     * @param array<string, mixed> $config Pre-extracted driver config slice
-     */
-    public function __construct(
-        private readonly array $config,
-        private readonly CURLRequest $client,
-    ) {
+    protected function providerName(): string
+    {
+        return 'OpenAI';
     }
 
     public function complete(
@@ -78,37 +70,17 @@ class OpenAIDriver implements AIDriver
 
         $body = array_merge($body, $options);
 
-        try {
-            $response = $this->client->request('POST', $url, [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $this->config['apiKey'],
-                    'content-type'  => 'application/json',
-                ],
-                'json'        => $body,
-                'timeout'     => $this->config['timeout'] ?? 30,
-                'http_errors' => false,
-            ]);
-        } catch (HTTPException $e) {
-            throw new AIException('Network error communicating with OpenAI API: ' . $e->getMessage(), 0, $e);
-        }
+        $data = $this->sendRequest($url, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->config['apiKey'],
+                'content-type'  => 'application/json',
+            ],
+            'json'        => $body,
+            'timeout'     => $this->config['timeout'] ?? 30,
+            'http_errors' => false,
+        ]);
 
-        $status = $response->getStatusCode();
-
-        if ($status === 401) {
-            throw new AIAuthException('OpenAI API authentication failed (HTTP 401).');
-        }
-
-        if ($status === 429) {
-            throw new AIRateLimitException('OpenAI API rate limit exceeded (HTTP 429).');
-        }
-
-        if ($status >= 400) {
-            throw new AIException("OpenAI API returned HTTP {$status}.");
-        }
-
-        $data = json_decode((string) $response->getBody(), true);
-
-        if (! is_array($data) || ! isset($data['choices'][0]['message']['content'])) {
+        if (! isset($data['choices'][0]['message']['content'])) {
             throw new AIException('Malformed response from OpenAI API: missing choices[0].message.content.');
         }
 
