@@ -45,7 +45,7 @@ class GeminiDriver implements AIDriver
     ): AIResponse {
         $model   = (string) $this->config['model'];
         $baseUrl = rtrim((string) ($this->config['baseUrl'] ?? self::DEFAULT_BASE_URL), '/');
-        $url     = $baseUrl . '/' . $model . ':generateContent?key=' . $this->config['apiKey'];
+        $url     = $baseUrl . '/' . $model . ':generateContent';
 
         $contents = [
             ['role' => 'user', 'parts' => [['text' => $user]]],
@@ -80,7 +80,7 @@ class GeminiDriver implements AIDriver
 
         try {
             $response = $this->client->request('POST', $url, [
-                'headers'     => ['content-type' => 'application/json'],
+                'headers'     => ['content-type' => 'application/json', 'x-goog-api-key' => $this->config['apiKey']],
                 'json'        => $body,
                 'timeout'     => $this->config['timeout'] ?? 30,
                 'http_errors' => false,
