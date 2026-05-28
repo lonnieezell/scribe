@@ -72,7 +72,13 @@ abstract class AbstractHttpDriver implements AIDriver
         }
 
         if ($status >= 400) {
-            throw new AIException($this->providerName() . " API returned HTTP {$status}.");
+            $raw     = (string) $response->getBody();
+            $decoded = json_decode($raw, true);
+            $detail  = is_array($decoded) && isset($decoded['error']['message'])
+                ? $decoded['error']['message']
+                : substr($raw, 0, 200);
+
+            throw new AIException($this->providerName() . " API returned HTTP {$status}: {$detail}");
         }
 
         $data = json_decode((string) $response->getBody(), true);
