@@ -39,9 +39,9 @@ class Services extends BaseService
         $config = config('AI');
 
         $driverFactories = [
-            'claude'  => static fn () => new ClaudeDriver($config->drivers['claude'] ?? [], static::curlrequest()),
-            'openai'  => static fn () => new OpenAIDriver($config->drivers['openai'] ?? [], static::curlrequest()),
-            'gemini'  => static fn () => new GeminiDriver($config->drivers['gemini'] ?? [], static::curlrequest()),
+            'claude' => static fn () => new ClaudeDriver($config->drivers['claude'] ?? [], static::curlrequest()),
+            'openai' => static fn () => new OpenAIDriver($config->drivers['openai'] ?? [], static::curlrequest()),
+            'gemini' => static fn () => new GeminiDriver($config->drivers['gemini'] ?? [], static::curlrequest()),
         ];
 
         return new AIService($config, $driverFactories);

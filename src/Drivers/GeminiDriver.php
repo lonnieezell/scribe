@@ -63,12 +63,12 @@ class GeminiDriver implements AIDriver
 
         $generationConfig = [];
 
-        if (isset($this->config['maxTokens']) && $this->config['maxTokens'] !== null) {
+        if (isset($this->config['maxTokens'])) {
             $generationConfig['maxOutputTokens'] = $this->config['maxTokens'];
         }
 
         if ($schema !== null) {
-            $generationConfig['responseSchema']  = $schema;
+            $generationConfig['responseSchema']   = $schema;
             $generationConfig['responseMimeType'] = 'application/json';
         }
 
