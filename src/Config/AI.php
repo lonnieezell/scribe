@@ -51,4 +51,13 @@ class AI extends BaseConfig
             'maxTokens' => null,
         ],
     ];
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->drivers['claude']['apiKey'] = env('ANTHROPIC_API_KEY', '');
+        $this->drivers['openai']['apiKey'] = env('OPENAI_API_KEY', '');
+        $this->drivers['gemini']['apiKey'] = env('GOOGLE_API_KEY', '');
+    }
 }
