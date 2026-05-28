@@ -40,6 +40,11 @@ final class MakePromptCommandTest extends CIUnitTestCase
         if ($this->generatedFile !== '' && is_file($this->generatedFile)) {
             unlink($this->generatedFile);
         }
+
+        $dir = APPPATH . 'Prompts';
+        if (is_dir($dir) && array_diff(scandir($dir), ['.', '..']) === []) {
+            rmdir($dir);
+        }
     }
 
     public function testGeneratesPromptFileWithCorrectContent(): void
@@ -53,12 +58,12 @@ final class MakePromptCommandTest extends CIUnitTestCase
 
         $content = file_get_contents($this->generatedFile);
 
-        $this->assertStringContainsString('namespace App\Prompts;', $content);
-        $this->assertStringContainsString('class SummarizeText extends BasePrompt', $content);
-        $this->assertStringContainsString('use Myth\Scribe\Prompts\BasePrompt;', $content);
-        $this->assertStringContainsString('public function systemPrompt(): string', $content);
-        $this->assertStringContainsString('public function userPrompt(): string', $content);
-        $this->assertStringContainsString('declare(strict_types=1);', $content);
+        $this->assertStringContainsString('namespace App\Prompts;', (string) $content);
+        $this->assertStringContainsString('class SummarizeText extends BasePrompt', (string) $content);
+        $this->assertStringContainsString('use Myth\Scribe\Prompts\BasePrompt;', (string) $content);
+        $this->assertStringContainsString('public function systemPrompt(): string', (string) $content);
+        $this->assertStringContainsString('public function userPrompt(): string', (string) $content);
+        $this->assertStringContainsString('declare(strict_types=1);', (string) $content);
     }
 
     public function testDoesNotOverwriteExistingFile(): void

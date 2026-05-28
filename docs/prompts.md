@@ -2,6 +2,49 @@
 
 A prompt is a class that encapsulates everything the AI needs to know about a single request. You create one by extending `BasePrompt`.
 
+## Generating a prompt
+
+Run the Spark generator to scaffold a new prompt class:
+
+```bash
+php spark make:prompt SummarizeText
+```
+
+This writes `app/Prompts/SummarizeText.php` with both required methods stubbed and ready to fill in:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Prompts;
+
+use Myth\Scribe\Prompts\BasePrompt;
+
+class SummarizeText extends BasePrompt
+{
+    /**
+     * The static system prompt that sets the AI's role and behavior.
+     * Think of this as the "instructions" given to the AI before the conversation starts.
+     */
+    public function systemPrompt(): string
+    {
+        return '';
+    }
+
+    /**
+     * The dynamic user message sent to the AI for this request.
+     * This is where you inject runtime data (e.g. the text to summarize).
+     */
+    public function userPrompt(): string
+    {
+        return '';
+    }
+}
+```
+
+The generator won't overwrite an existing file. Pass `--force` to reset a stub, or `--namespace` to place the class in a non-default namespace.
+
 ## The basics
 
 Two abstract methods are required:

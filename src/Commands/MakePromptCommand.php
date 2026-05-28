@@ -25,18 +25,13 @@ class MakePromptCommand extends BaseCommand
 {
     use GeneratorTrait;
 
-    protected $group = 'make';
-
-    protected $name = 'make:prompt';
-
+    protected $group       = 'make';
+    protected $name        = 'make:prompt';
     protected $description = 'Generates a new prompt class.';
-
-    protected $usage = 'make:prompt <name> [options]';
-
-    protected $arguments = [
+    protected $usage       = 'make:prompt <name> [options]';
+    protected $arguments   = [
         'name' => 'The prompt class name.',
     ];
-
     protected $options = [
         '--namespace' => 'Set root namespace. Default: "APP_NAMESPACE".',
         '--suffix'    => 'Append the component title to the class name (e.g. Summarize => SummarizePrompt).',
@@ -48,10 +43,8 @@ class MakePromptCommand extends BaseCommand
      */
     public function run(array $params): void
     {
-        $this->component    = 'Prompt';
-        $this->directory    = 'Prompts';
-        $this->template     = 'prompt.tpl.php';
-        $this->templatePath = 'Myth\Scribe\Commands\Generators\Views\prompt.tpl.php';
+        $this->component = 'Prompt';
+        $this->directory = 'Prompts';
 
         $this->generateClass($params);
     }
