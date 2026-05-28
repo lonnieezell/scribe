@@ -65,10 +65,10 @@ final class AIServiceTest extends CIUnitTestCase
     private function makeService(AI $config): AIService
     {
         $drivers = [
-            'claude'  => static fn () => new FakeDriver(),
-            'openai'  => static fn () => new FakeDriver(new AIResponse('openai-response', 'gpt-4o', 1, 2, [])),
-            'gemini'  => static fn () => new FakeDriver(),
-            'fake'    => static fn () => new FakeDriver(),
+            'claude' => static fn () => new FakeDriver(),
+            'openai' => static fn () => new FakeDriver(new AIResponse('openai-response', 'gpt-4o', 1, 2, [])),
+            'gemini' => static fn () => new FakeDriver(),
+            'fake'   => static fn () => new FakeDriver(),
         ];
 
         return new AIService($config, $drivers);
