@@ -37,6 +37,13 @@ class OpenAIDriver extends AbstractHttpDriver
     ): AIResponse {
         $url = $this->config['baseUrl'] ?? self::DEFAULT_API_URL;
 
+        if ($schema !== null) {
+            $pos = strpos($system, AIDriver::SCHEMA_SYSTEM_MARKER);
+            if ($pos !== false) {
+                $system = substr($system, 0, $pos);
+            }
+        }
+
         $messages = [
             ['role' => 'system', 'content' => $system],
             ['role' => 'user', 'content' => $user],
@@ -53,11 +60,6 @@ class OpenAIDriver extends AbstractHttpDriver
         }
 
         if ($schema !== null) {
-            $pos = strpos($system, AIDriver::SCHEMA_SYSTEM_MARKER);
-            if ($pos !== false) {
-                $system = substr($system, 0, $pos);
-            }
-
             $body['response_format'] = [
                 'type'        => 'json_schema',
                 'json_schema' => [

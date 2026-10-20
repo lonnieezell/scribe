@@ -15,6 +15,7 @@ namespace Tests\Drivers;
 
 use CodeIgniter\HTTP\CURLRequest;
 use CodeIgniter\HTTP\Exceptions\HTTPException;
+use Myth\Scribe\Drivers\AIDriver;
 use Myth\Scribe\Drivers\OpenAIDriver;
 use Myth\Scribe\Exceptions\AIAuthException;
 use Myth\Scribe\Exceptions\AIException;
@@ -81,6 +82,29 @@ final class OpenAIDriverTest extends DriverTestCase
 
         $driver = new OpenAIDriver($this->defaultConfig, $client);
         $driver->complete('sys', 'user', null, $schema, []);
+    }
+
+    public function testSchemaModeStripsSchemaInstructionsFromSystemMessage(): void
+    {
+        $schema = ['type' => 'object'];
+        $system = 'sys' . AIDriver::SCHEMA_SYSTEM_MARKER . '{"type":"object"}';
+
+        $client = $this->createMock(CURLRequest::class);
+        $client->expects($this->once())
+            ->method('request')
+            ->with(
+                'POST',
+                $this->anything(),
+                $this->callback(static function (array $opts): bool {
+                    self::assertSame(['role' => 'system', 'content' => 'sys'], $opts['json']['messages'][0]);
+
+                    return true;
+                }),
+            )
+            ->willReturn($this->makeResponse(200, $this->happyBody()));
+
+        $driver = new OpenAIDriver($this->defaultConfig, $client);
+        $driver->complete($system, 'user', null, $schema, []);
     }
 
     public function testNoSchemaModeOmitsResponseFormat(): void
