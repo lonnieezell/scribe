@@ -247,6 +247,51 @@ final class OpenAIDriverTest extends DriverTestCase
         $driver->complete('sys', 'user', null, null, []);
     }
 
+    public function testLengthFinishReasonThrowsAIException(): void
+    {
+        $body = [
+            'choices' => [['message' => ['content' => 'The answer is part'], 'finish_reason' => 'length']],
+        ];
+
+        $client = $this->makeClient($this->makeResponse(200, $body));
+        $driver = new OpenAIDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage('OpenAI response was cut off at the token limit.');
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
+    public function testRefusalThrowsAIExceptionWithRefusalText(): void
+    {
+        $body = [
+            'choices' => [[
+                'message'       => ['content' => null, 'refusal' => "I can't help with that."],
+                'finish_reason' => 'stop',
+            ]],
+        ];
+
+        $client = $this->makeClient($this->makeResponse(200, $body));
+        $driver = new OpenAIDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage("OpenAI declined to respond: I can't help with that.");
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
+    public function testContentFilterFinishReasonThrowsAIException(): void
+    {
+        $body = [
+            'choices' => [['message' => ['content' => null], 'finish_reason' => 'content_filter']],
+        ];
+
+        $client = $this->makeClient($this->makeResponse(200, $body));
+        $driver = new OpenAIDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage('OpenAI declined to respond (content_filter).');
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
     public function testMalformedResponseBodyThrowsAIException(): void
     {
         $client = $this->makeClient($this->makeResponse(200, '{"unexpected":"shape"}'));

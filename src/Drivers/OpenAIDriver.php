@@ -82,6 +82,20 @@ class OpenAIDriver extends AbstractHttpDriver
             'http_errors' => false,
         ]);
 
+        $finishReason = $data['choices'][0]['finish_reason'] ?? null;
+
+        if ($finishReason === 'length') {
+            throw new AIException('OpenAI response was cut off at the token limit.');
+        }
+
+        if (isset($data['choices'][0]['message']['refusal'])) {
+            throw new AIException('OpenAI declined to respond: ' . $data['choices'][0]['message']['refusal']);
+        }
+
+        if ($finishReason === 'content_filter') {
+            throw new AIException('OpenAI declined to respond (content_filter).');
+        }
+
         if (! isset($data['choices'][0]['message']['content'])) {
             throw new AIException('Malformed response from OpenAI API: missing choices[0].message.content.');
         }

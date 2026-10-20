@@ -87,6 +87,20 @@ class GeminiDriver extends AbstractHttpDriver
             'http_errors' => false,
         ]);
 
+        if (isset($data['promptFeedback']['blockReason'])) {
+            throw new AIException("Gemini blocked the prompt ({$data['promptFeedback']['blockReason']}).");
+        }
+
+        $finishReason = $data['candidates'][0]['finishReason'] ?? null;
+
+        if ($finishReason === 'MAX_TOKENS') {
+            throw new AIException('Gemini response was cut off at the token limit.');
+        }
+
+        if ($finishReason !== null && $finishReason !== 'STOP' && $finishReason !== 'FINISH_REASON_UNSPECIFIED') {
+            throw new AIException("Gemini declined to respond ({$finishReason}).");
+        }
+
         if (! isset($data['candidates'][0]['content']['parts'][0]['text'])) {
             throw new AIException('Malformed response from Gemini API: missing candidates[0].content.parts[0].text.');
         }
