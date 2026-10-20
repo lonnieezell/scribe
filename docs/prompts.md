@@ -142,7 +142,7 @@ $data = service('scribe')->run(new ExtractContactPrompt($text))->toArray();
 
 ## Assistant prefill
 
-Both Claude and OpenAI support an assistant prefill — text that primes the start of the model's response. Override `assistant()` to use it:
+OpenAI and older Claude models support an assistant prefill — text that primes the start of the model's response. Override `assistant()` to use it:
 
 ```php
 <?php
@@ -152,6 +152,9 @@ public function assistant(): ?string
     return '{"'; // nudge the model to start a JSON object
 }
 ```
+
+!!! warning "Current Claude models reject prefill"
+    Current Claude models, such as Claude Sonnet 5.5 and Claude Opus 5.5, return a 400 error when the request ends with an assistant turn. Return `null` from `assistant()` when using these models. Use `$format` or `schema()` to steer the output instead.
 
 ## Overriding the driver
 

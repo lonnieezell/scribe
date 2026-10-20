@@ -62,16 +62,32 @@ class ClaudeDriver extends AbstractHttpDriver
             'http_errors' => false,
         ]);
 
-        if (! isset($data['content'][0]['text'])) {
-            throw new AIException('Malformed response from Claude API: missing content[0].text.');
+        $stopReason = $data['stop_reason'] ?? null;
+
+        if ($stopReason === 'refusal') {
+            $category = $data['stop_details']['category'] ?? null;
+
+            throw new AIException(
+                'Claude declined to respond (refusal' . ($category !== null ? ", category: {$category}" : '') . ').',
+            );
         }
 
-        return new AIResponse(
-            content: $data['content'][0]['text'],
-            model: $data['model'] ?? (string) $this->config['model'],
-            inputTokens: $data['usage']['input_tokens'] ?? 0,
-            outputTokens: $data['usage']['output_tokens'] ?? 0,
-            raw: $data,
-        );
+        if ($stopReason === 'max_tokens') {
+            throw new AIException('Claude response was cut off at max_tokens.');
+        }
+
+        foreach ((array) ($data['content'] ?? []) as $block) {
+            if (($block['type'] ?? null) === 'text' && isset($block['text'])) {
+                return new AIResponse(
+                    content: $block['text'],
+                    model: $data['model'] ?? (string) $this->config['model'],
+                    inputTokens: $data['usage']['input_tokens'] ?? 0,
+                    outputTokens: $data['usage']['output_tokens'] ?? 0,
+                    raw: $data,
+                );
+            }
+        }
+
+        throw new AIException('Malformed response from Claude API: no text block in content.');
     }
 }
