@@ -254,6 +254,55 @@ final class GeminiDriverTest extends DriverTestCase
         $driver->complete('sys', 'user', null, null, []);
     }
 
+    public function testBlockedPromptThrowsAIExceptionWithBlockReason(): void
+    {
+        $client = $this->makeClient($this->makeResponse(200, ['promptFeedback' => ['blockReason' => 'SAFETY']]));
+        $driver = new GeminiDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage('Gemini blocked the prompt (SAFETY).');
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
+    public function testMaxTokensFinishReasonThrowsAIException(): void
+    {
+        $body = [
+            'candidates' => [[
+                'content'      => ['parts' => [['text' => 'The answer is part']]],
+                'finishReason' => 'MAX_TOKENS',
+            ]],
+        ];
+
+        $client = $this->makeClient($this->makeResponse(200, $body));
+        $driver = new GeminiDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage('Gemini response was cut off at the token limit.');
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
+    public function testSafetyFinishReasonThrowsAIExceptionWithReason(): void
+    {
+        $client = $this->makeClient($this->makeResponse(200, ['candidates' => [['finishReason' => 'SAFETY']]]));
+        $driver = new GeminiDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage('Gemini declined to respond (SAFETY).');
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
+    public function testStopAndUnspecifiedFinishReasonsReturnContent(): void
+    {
+        foreach (['STOP', 'FINISH_REASON_UNSPECIFIED'] as $reason) {
+            $body                                  = $this->happyBody();
+            $body['candidates'][0]['finishReason'] = $reason;
+
+            $driver = new GeminiDriver($this->defaultConfig, $this->makeClient($this->makeResponse(200, $body)));
+
+            $this->assertSame('Hello world', $driver->complete('sys', 'user', null, null, [])->content);
+        }
+    }
+
     public function testMalformedResponseBodyThrowsAIException(): void
     {
         $client = $this->makeClient($this->makeResponse(200, '{"unexpected":"shape"}'));
