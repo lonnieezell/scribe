@@ -168,6 +168,103 @@ final class ClaudeDriverTest extends DriverTestCase
         $driver->complete('sys', 'user', null, null, []);
     }
 
+    public function testThinkingBlockIsSkippedForFirstTextBlock(): void
+    {
+        $body = [
+            'content' => [
+                ['type' => 'thinking', 'thinking' => 'Let me think...', 'signature' => 'abc'],
+                ['type' => 'text', 'text' => 'The answer'],
+            ],
+            'model'       => 'claude-sonnet-5-5',
+            'stop_reason' => 'end_turn',
+            'usage'       => ['input_tokens' => 10, 'output_tokens' => 20],
+        ];
+
+        $client = $this->makeClient($this->makeResponse(200, $body));
+        $driver = new ClaudeDriver($this->defaultConfig, $client);
+
+        $response = $driver->complete('sys', 'user', null, null, []);
+
+        $this->assertSame('The answer', $response->content);
+        $this->assertSame($body, $response->raw);
+    }
+
+    public function testResponseWithNoTextBlockThrowsAIException(): void
+    {
+        $body = [
+            'content'     => [['type' => 'thinking', 'thinking' => 'Hmm', 'signature' => 'abc']],
+            'stop_reason' => 'end_turn',
+        ];
+
+        $client = $this->makeClient($this->makeResponse(200, $body));
+        $driver = new ClaudeDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage('Malformed response from Claude API');
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
+    public function testRefusalStopReasonThrowsAIExceptionWithCategory(): void
+    {
+        $body = [
+            'content'      => [],
+            'stop_reason'  => 'refusal',
+            'stop_details' => ['category' => 'cyber'],
+        ];
+
+        $client = $this->makeClient($this->makeResponse(200, $body));
+        $driver = new ClaudeDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage('Claude declined to respond (refusal, category: cyber).');
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
+    public function testMaxTokensStopReasonThrowsAIException(): void
+    {
+        $body = [
+            'content'     => [['type' => 'text', 'text' => 'The answer is part']],
+            'stop_reason' => 'max_tokens',
+        ];
+
+        $client = $this->makeClient($this->makeResponse(200, $body));
+        $driver = new ClaudeDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage('Claude response was cut off at max_tokens.');
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
+    public function testRefusalWithoutCategoryThrowsAIException(): void
+    {
+        $client = $this->makeClient($this->makeResponse(200, ['content' => [], 'stop_reason' => 'refusal']));
+        $driver = new ClaudeDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage('Claude declined to respond (refusal).');
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
+    public function testNonArrayContentThrowsAIException(): void
+    {
+        $client = $this->makeClient($this->makeResponse(200, ['content' => 'oops']));
+        $driver = new ClaudeDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage('Malformed response from Claude API');
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
+    public function testNonArrayContentBlockThrowsAIException(): void
+    {
+        $client = $this->makeClient($this->makeResponse(200, ['content' => ['oops']]));
+        $driver = new ClaudeDriver($this->defaultConfig, $client);
+
+        $this->expectException(AIException::class);
+        $this->expectExceptionMessage('Malformed response from Claude API');
+        $driver->complete('sys', 'user', null, null, []);
+    }
+
     public function testMalformedResponseBodyThrowsAIException(): void
     {
         $client = $this->makeClient($this->makeResponse(200, '{"unexpected":"shape"}'));
