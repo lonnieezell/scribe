@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -739,12 +739,12 @@
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// In your test setUp or test method:</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nv">$config</span>  <span class="o">=</span> <span class="k">new</span> <span class="nx">AI</span><span class="p">();</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AIService</span><span class="p">(</span><span class="nv">$config</span><span class="p">,</span> <span class="p">[</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="s1">&#39;claude&#39;</span> <span class="o">=&gt;</span> <span class="k">static</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">FakeDriver</span><span class="p">(),</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="s1">'claude'</span> <span class="o">=&gt;</span> <span class="k">static</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">FakeDriver</span><span class="p">(),</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">]);</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$service</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">MyPrompt</span><span class="p">());</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">&#39;fake-response&#39;</span><span class="p">,</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">);</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'fake-response'</span><span class="p">,</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">);</span>
 </code></pre></div>
 <p><code>FakeDriver</code> returns a response with <code>content = 'fake-response'</code> and <code>model = 'fake-model'</code> by default.</p>
 <h2 id="returning-custom-responses">Returning custom responses</h2>
@@ -755,22 +755,22 @@
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">use</span> <span class="nx">Myth\Scribe\Drivers\FakeDriver</span><span class="p">;</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nv">$canned</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AIResponse</span><span class="p">(</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="nx">content</span><span class="o">:</span> <span class="s1">&#39;{&quot;label&quot;:&quot;SPAM&quot;,&quot;confidence&quot;:0.97}&#39;</span><span class="p">,</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="nx">model</span><span class="o">:</span> <span class="s1">&#39;claude-haiku-4-5&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="nx">content</span><span class="o">:</span> <span class="s1">'{"label":"SPAM","confidence":0.97}'</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="nx">model</span><span class="o">:</span> <span class="s1">'claude-haiku-4-5'</span><span class="p">,</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="nx">inputTokens</span><span class="o">:</span> <span class="mi">42</span><span class="p">,</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="nx">outputTokens</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="nx">raw</span><span class="o">:</span> <span class="p">[],</span>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">);</span>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AIService</span><span class="p">(</span><span class="nv">$config</span><span class="p">,</span> <span class="p">[</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="s1">&#39;claude&#39;</span> <span class="o">=&gt;</span> <span class="k">static</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">FakeDriver</span><span class="p">(</span><span class="nv">$canned</span><span class="p">),</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="s1">'claude'</span> <span class="o">=&gt;</span> <span class="k">static</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">FakeDriver</span><span class="p">(</span><span class="nv">$canned</span><span class="p">),</span>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">]);</span>
 <a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$service</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">ClassifyEmailPrompt</span><span class="p">(</span><span class="nv">$emailBody</span><span class="p">));</span>
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="nv">$data</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">&#39;SPAM&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]);</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="mf">0.97</span><span class="p">,</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]);</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'SPAM'</span><span class="p">,</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]);</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="mf">0.97</span><span class="p">,</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">'confidence'</span><span class="p">]);</span>
 </code></pre></div>
 <p>This lets you test the full round-trip — including <code>toArray()</code> decoding and any business logic that acts on the response — without mocking anything.</p>
 <h2 id="testing-the-toarray-error-path">Testing the toArray() error path</h2>
@@ -778,15 +778,15 @@
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nv">$badResponse</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AIResponse</span><span class="p">(</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="nx">content</span><span class="o">:</span> <span class="s1">&#39;Sorry, I cannot help with that.&#39;</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="nx">model</span><span class="o">:</span> <span class="s1">&#39;claude-haiku-4-5&#39;</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="nx">content</span><span class="o">:</span> <span class="s1">'Sorry, I cannot help with that.'</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="nx">model</span><span class="o">:</span> <span class="s1">'claude-haiku-4-5'</span><span class="p">,</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="nx">inputTokens</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="nx">outputTokens</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="nx">raw</span><span class="o">:</span> <span class="p">[],</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">);</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AIService</span><span class="p">(</span><span class="nv">$config</span><span class="p">,</span> <span class="p">[</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="s1">&#39;claude&#39;</span> <span class="o">=&gt;</span> <span class="k">static</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">FakeDriver</span><span class="p">(</span><span class="nv">$badResponse</span><span class="p">),</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="s1">'claude'</span> <span class="o">=&gt;</span> <span class="k">static</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">FakeDriver</span><span class="p">(</span><span class="nv">$badResponse</span><span class="p">),</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">]);</span>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">expectException</span><span class="p">(</span><span class="nx">AIException</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
@@ -797,10 +797,10 @@
 <p>To verify that <code>buildSystemPrompt()</code> produces the right output, test the prompt class directly:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">$prompt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClassifyEmailPrompt</span><span class="p">(</span><span class="s1">&#39;Buy cheap meds now!!!&#39;</span><span class="p">);</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">$prompt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClassifyEmailPrompt</span><span class="p">(</span><span class="s1">'Buy cheap meds now!!!'</span><span class="p">);</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertStringContainsString</span><span class="p">(</span><span class="s1">&#39;Classify&#39;</span><span class="p">,</span> <span class="nv">$prompt</span><span class="o">-&gt;</span><span class="na">buildSystemPrompt</span><span class="p">());</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">&#39;Buy cheap meds now!!!&#39;</span><span class="p">,</span> <span class="nv">$prompt</span><span class="o">-&gt;</span><span class="na">userPrompt</span><span class="p">());</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertStringContainsString</span><span class="p">(</span><span class="s1">'Classify'</span><span class="p">,</span> <span class="nv">$prompt</span><span class="o">-&gt;</span><span class="na">buildSystemPrompt</span><span class="p">());</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'Buy cheap meds now!!!'</span><span class="p">,</span> <span class="nv">$prompt</span><span class="o">-&gt;</span><span class="na">userPrompt</span><span class="p">());</span>
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertNull</span><span class="p">(</span><span class="nv">$prompt</span><span class="o">-&gt;</span><span class="na">assistant</span><span class="p">());</span>
 </code></pre></div>
 <p>Prompt classes are plain PHP — no service container needed. Test them directly.</p>
@@ -809,7 +809,7 @@
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AI</span><span class="p">();</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">$config</span><span class="o">-&gt;</span><span class="na">defaultDriver</span> <span class="o">=</span> <span class="s1">&#39;nonexistent&#39;</span><span class="p">;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">$config</span><span class="o">-&gt;</span><span class="na">defaultDriver</span> <span class="o">=</span> <span class="s1">'nonexistent'</span><span class="p">;</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AIService</span><span class="p">(</span><span class="nv">$config</span><span class="p">,</span> <span class="p">[]);</span> <span class="c1">// no factories registered</span>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
@@ -834,16 +834,16 @@
 <a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>        <span class="k">parent</span><span class="o">::</span><span class="na">setUp</span><span class="p">();</span>
 <a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
 <a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AIService</span><span class="p">(</span><span class="k">new</span> <span class="nx">AI</span><span class="p">(),</span> <span class="p">[</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>            <span class="s1">&#39;claude&#39;</span> <span class="o">=&gt;</span> <span class="k">static</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">FakeDriver</span><span class="p">(</span>
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>                <span class="k">new</span> <span class="nx">AIResponse</span><span class="p">(</span><span class="s1">&#39;{&quot;label&quot;:&quot;HAM&quot;}&#39;</span><span class="p">,</span> <span class="s1">&#39;claude-haiku-4-5&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[])</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>            <span class="s1">'claude'</span> <span class="o">=&gt;</span> <span class="k">static</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">FakeDriver</span><span class="p">(</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>                <span class="k">new</span> <span class="nx">AIResponse</span><span class="p">(</span><span class="s1">'{"label":"HAM"}'</span><span class="p">,</span> <span class="s1">'claude-haiku-4-5'</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[])</span>
 <a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>            <span class="p">),</span>
 <a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>        <span class="p">]);</span>
 <a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="p">}</span>
 <a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
 <a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testClassifiesHam</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    <span class="p">{</span>
-<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">service</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">ClassifyEmailPrompt</span><span class="p">(</span><span class="s1">&#39;Hi Alice, see you at 3pm.&#39;</span><span class="p">));</span>
-<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">&#39;HAM&#39;</span><span class="p">,</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">()[</span><span class="s1">&#39;label&#39;</span><span class="p">]);</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">service</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">ClassifyEmailPrompt</span><span class="p">(</span><span class="s1">'Hi Alice, see you at 3pm.'</span><span class="p">));</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">'HAM'</span><span class="p">,</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">()[</span><span class="s1">'label'</span><span class="p">]);</span>
 <a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="p">}</span>
 <a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="p">}</span>
 </code></pre></div>
@@ -954,7 +954,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "content.code.copy", "navigation.footer", "content.action.edit", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

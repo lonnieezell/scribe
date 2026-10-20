@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -766,12 +766,12 @@
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">class</span> <span class="nc">SummarizeText</span> <span class="k">extends</span> <span class="nx">BasePrompt</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">{</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="sd">/**</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="sd">     * The static system prompt that sets the AI&#39;s role and behavior.</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="sd">     * Think of this as the &quot;instructions&quot; given to the AI before the conversation starts.</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="sd">     * The static system prompt that sets the AI's role and behavior.</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="sd">     * Think of this as the "instructions" given to the AI before the conversation starts.</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="sd">     */</span>
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">systemPrompt</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="p">{</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="k">return</span> <span class="s1">''</span><span class="p">;</span>
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="p">}</span>
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="sd">/**</span>
@@ -780,7 +780,7 @@
 <a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="sd">     */</span>
 <a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">userPrompt</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
 <a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="p">{</span>
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>        <span class="k">return</span> <span class="s1">''</span><span class="p">;</span>
 <a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    <span class="p">}</span>
 <a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="p">}</span>
 </code></pre></div>
@@ -798,7 +798,7 @@
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">systemPrompt</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="p">{</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="k">return</span> <span class="s2">&quot;You are a professional translator. Translate text into </span><span class="si">{</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">targetLanguage</span><span class="si">}</span><span class="s2">. Return only the translation.&quot;</span><span class="p">;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="k">return</span> <span class="s2">"You are a professional translator. Translate text into </span><span class="si">{</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">targetLanguage</span><span class="si">}</span><span class="s2">. Return only the translation."</span><span class="p">;</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="p">}</span>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">userPrompt</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
@@ -810,8 +810,8 @@
 <p>Pass it to the service:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">$response</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;scribe&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">TranslatePrompt</span><span class="p">(</span><span class="s1">&#39;Hello!&#39;</span><span class="p">,</span> <span class="s1">&#39;French&#39;</span><span class="p">));</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">;</span> <span class="c1">// &quot;Bonjour !&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">$response</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">'scribe'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">TranslatePrompt</span><span class="p">(</span><span class="s1">'Hello!'</span><span class="p">,</span> <span class="s1">'French'</span><span class="p">));</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">;</span> <span class="c1">// "Bonjour !"</span>
 </code></pre></div>
 <h2 id="format-hints">Format hints</h2>
 <p>Set <code>$format</code> to append a format instruction to the system prompt automatically:</p>
@@ -819,11 +819,11 @@
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">class</span> <span class="nc">SentimentPrompt</span> <span class="k">extends</span> <span class="nx">BasePrompt</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">{</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$format</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$format</span> <span class="o">=</span> <span class="s1">'json'</span><span class="p">;</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">systemPrompt</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="p">{</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="k">return</span> <span class="s1">&#39;Analyze the sentiment of the text.&#39;</span><span class="p">;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="k">return</span> <span class="s1">'Analyze the sentiment of the text.'</span><span class="p">;</span>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="p">}</span>
 <a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
 <a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">userPrompt</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
@@ -838,7 +838,7 @@
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">{</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">systemPrompt</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="p">{</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="k">return</span> <span class="s1">&#39;Extract contact information from the text.&#39;</span><span class="p">;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="k">return</span> <span class="s1">'Extract contact information from the text.'</span><span class="p">;</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="p">}</span>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">userPrompt</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
@@ -846,41 +846,45 @@
 <a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">schema</span><span class="p">()</span><span class="o">:</span> <span class="o">?</span><span class="k">array</span>
 <a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="p">{</span>
 <a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>        <span class="k">return</span> <span class="p">[</span>
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>            <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;object&#39;</span><span class="p">,</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>            <span class="s1">&#39;properties&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>                <span class="s1">&#39;name&#39;</span>  <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;string&#39;</span><span class="p">],</span>
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>                <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="s1">&#39;format&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">],</span>
-<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>                <span class="s1">&#39;phone&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;string&#39;</span><span class="p">],</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'object'</span><span class="p">,</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>            <span class="s1">'properties'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>                <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'string'</span><span class="p">],</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>                <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'string'</span><span class="p">,</span> <span class="s1">'format'</span> <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">],</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>                <span class="s1">'phone'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'string'</span><span class="p">],</span>
 <a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>            <span class="p">],</span>
-<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>            <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>            <span class="s1">'required'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'name'</span><span class="p">],</span>
 <a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>        <span class="p">];</span>
 <a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>    <span class="p">}</span>
 <a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="p">}</span>
 <a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
 <a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="c1">// Then:</span>
-<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="nv">$data</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">&#39;scribe&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">ExtractContactPrompt</span><span class="p">(</span><span class="nv">$text</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
-<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="c1">// [&#39;name&#39; =&gt; &#39;Alice Smith&#39;, &#39;email&#39; =&gt; &#39;alice@example.com&#39;, &#39;phone&#39; =&gt; null]</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="nv">$data</span> <span class="o">=</span> <span class="nx">service</span><span class="p">(</span><span class="s1">'scribe'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">ExtractContactPrompt</span><span class="p">(</span><span class="nv">$text</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="c1">// ['name' =&gt; 'Alice Smith', 'email' =&gt; 'alice@example.com', 'phone' =&gt; null]</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Don't set both $format and schema()</p>
 <p>If you set <code>$format</code> and also return a non-null <code>schema()</code>, Scribe uses the schema and logs a warning. The format hint is ignored. Pick one.</p>
 </div>
 <h2 id="assistant-prefill">Assistant prefill</h2>
-<p>Both Claude and OpenAI support an assistant prefill — text that primes the start of the model's response. Override <code>assistant()</code> to use it:</p>
+<p>OpenAI and older Claude models support an assistant prefill — text that primes the start of the model's response. Override <code>assistant()</code> to use it:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">assistant</span><span class="p">()</span><span class="o">:</span> <span class="o">?</span><span class="nx">string</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">{</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="k">return</span> <span class="s1">&#39;{&quot;&#39;</span><span class="p">;</span> <span class="c1">// nudge the model to start a JSON object</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="k">return</span> <span class="s1">'{"'</span><span class="p">;</span> <span class="c1">// nudge the model to start a JSON object</span>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Current Claude models reject prefill</p>
+<p>Current Claude models, such as Claude Sonnet 5.5 and Claude Opus 5.5, return a 400 error when the request ends with an assistant turn. Return <code>null</code> from <code>assistant()</code> when using these models. Use <code>$format</code> or <code>schema()</code> to steer the output instead.</p>
+</div>
 <h2 id="overriding-the-driver">Overriding the driver</h2>
 <p>By default every prompt uses the driver configured in <code>Config/AI::$defaultDriver</code>. Override it per-prompt when you need a specific provider for a specific task:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">class</span> <span class="nc">ModerationPrompt</span> <span class="k">extends</span> <span class="nx">BasePrompt</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">{</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="k">public</span> <span class="o">?</span><span class="nx">string</span> <span class="nv">$driver</span> <span class="o">=</span> <span class="s1">&#39;openai&#39;</span><span class="p">;</span> <span class="c1">// always use OpenAI for this one</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="k">public</span> <span class="o">?</span><span class="nx">string</span> <span class="nv">$driver</span> <span class="o">=</span> <span class="s1">'openai'</span><span class="p">;</span> <span class="c1">// always use OpenAI for this one</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">}</span>
@@ -892,8 +896,8 @@
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">class</span> <span class="nc">CreativePrompt</span> <span class="k">extends</span> <span class="nx">BasePrompt</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">{</span>
 <a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="k">public</span> <span class="k">array</span> <span class="nv">$options</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>        <span class="s1">&#39;temperature&#39;</span> <span class="o">=&gt;</span> <span class="mf">1.2</span><span class="p">,</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>        <span class="s1">&#39;max_tokens&#39;</span>  <span class="o">=&gt;</span> <span class="mi">500</span><span class="p">,</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>        <span class="s1">'temperature'</span> <span class="o">=&gt;</span> <span class="mf">1.2</span><span class="p">,</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>        <span class="s1">'max_tokens'</span>  <span class="o">=&gt;</span> <span class="mi">500</span><span class="p">,</span>
 <a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="p">];</span>
 <a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
 <a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="c1">// ...</span>
@@ -1008,7 +1012,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "content.code.copy", "navigation.footer", "content.action.edit", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

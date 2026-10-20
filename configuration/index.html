@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -765,21 +765,21 @@
 <h2 id="defaultdriver">defaultDriver</h2>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultDriver</span> <span class="o">=</span> <span class="s1">&#39;claude&#39;</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultDriver</span> <span class="o">=</span> <span class="s1">'claude'</span><span class="p">;</span>
 </code></pre></div>
 <p>The driver key to use when a prompt doesn't specify one. Must match a key in the <code>$drivers</code> array below.</p>
 <p>Change it to switch providers globally:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultDriver</span> <span class="o">=</span> <span class="s1">&#39;openai&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultDriver</span> <span class="o">=</span> <span class="s1">'openai'</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="drivers">drivers</h2>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">public</span> <span class="k">array</span> <span class="nv">$drivers</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="s1">&#39;claude&#39;</span>  <span class="o">=&gt;</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="s1">&#39;openai&#39;</span>  <span class="o">=&gt;</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="s1">&#39;gemini&#39;</span>  <span class="o">=&gt;</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="s1">'claude'</span>  <span class="o">=&gt;</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="s1">'openai'</span>  <span class="o">=&gt;</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="s1">'gemini'</span>  <span class="o">=&gt;</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">];</span>
 </code></pre></div>
 <p>Each driver entry is a keyed array. The key is what you use in <code>$defaultDriver</code> and in <code>BasePrompt::$driver</code>.</p>
@@ -831,22 +831,22 @@
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">public</span> <span class="k">array</span> <span class="nv">$drivers</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="s1">&#39;claude&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="s1">&#39;apiKey&#39;</span>    <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;ANTHROPIC_API_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="s1">&#39;model&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;claude-haiku-4-5&#39;</span><span class="p">,</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="s1">&#39;timeout&#39;</span>   <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="s1">&#39;maxTokens&#39;</span> <span class="o">=&gt;</span> <span class="mi">4096</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="s1">'claude'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="s1">'apiKey'</span>    <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">'ANTHROPIC_API_KEY'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="s1">'model'</span>     <span class="o">=&gt;</span> <span class="s1">'claude-haiku-4-5'</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="s1">'timeout'</span>   <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="s1">'maxTokens'</span> <span class="o">=&gt;</span> <span class="mi">4096</span><span class="p">,</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="p">],</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="s1">&#39;openai&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="s1">&#39;apiKey&#39;</span>  <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;OPENAI_API_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="s1">&#39;model&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;gpt-5.4-mini&#39;</span><span class="p">,</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="s1">&#39;timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="s1">'openai'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="s1">'apiKey'</span>  <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">'OPENAI_API_KEY'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="s1">'model'</span>   <span class="o">=&gt;</span> <span class="s1">'gpt-5.4-mini'</span><span class="p">,</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="s1">'timeout'</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
 <a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="p">],</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="s1">&#39;gemini&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="s1">&#39;apiKey&#39;</span>    <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;GOOGLE_API_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="s1">&#39;model&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;gemini-flash-latest&#39;</span><span class="p">,</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="s1">&#39;timeout&#39;</span>   <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>        <span class="s1">&#39;maxTokens&#39;</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>  <span class="c1">// set an int to cap output tokens</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="s1">'gemini'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="s1">'apiKey'</span>    <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">'GOOGLE_API_KEY'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="s1">'model'</span>     <span class="o">=&gt;</span> <span class="s1">'gemini-flash-latest'</span><span class="p">,</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="s1">'timeout'</span>   <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>        <span class="s1">'maxTokens'</span> <span class="o">=&gt;</span> <span class="k">null</span><span class="p">,</span>  <span class="c1">// set an int to cap output tokens</span>
 <a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="p">],</span>
 <a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="p">];</span>
 </code></pre></div>
@@ -854,24 +854,24 @@
 <p>The optional <code>baseUrl</code> key lets you point a driver at a compatible API endpoint — useful for local models or proxies:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="s1">&#39;openai&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="s1">&#39;apiKey&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;not-needed&#39;</span><span class="p">,</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="s1">&#39;model&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;local-llama&#39;</span><span class="p">,</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="s1">&#39;timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">60</span><span class="p">,</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://localhost:11434/v1&#39;</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="s1">'openai'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="s1">'apiKey'</span>  <span class="o">=&gt;</span> <span class="s1">'not-needed'</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="s1">'model'</span>   <span class="o">=&gt;</span> <span class="s1">'local-llama'</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="s1">'timeout'</span> <span class="o">=&gt;</span> <span class="mi">60</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="s1">'baseUrl'</span> <span class="o">=&gt;</span> <span class="s1">'http://localhost:11434/v1'</span><span class="p">,</span>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">],</span>
 </code></pre></div>
 <h3 id="adding-a-custom-driver">Adding a custom driver</h3>
 <p>You can add your own driver key for any provider that has a matching Scribe driver package:</p>
 <div class="language-php highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cp">&lt;?php</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultDriver</span> <span class="o">=</span> <span class="s1">&#39;my-provider&#39;</span><span class="p">;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">public</span> <span class="nx">string</span> <span class="nv">$defaultDriver</span> <span class="o">=</span> <span class="s1">'my-provider'</span><span class="p">;</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">public</span> <span class="k">array</span> <span class="nv">$drivers</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="s1">&#39;my-provider&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="s1">&#39;apiKey&#39;</span>  <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;MY_PROVIDER_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="s1">&#39;model&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;my-model&#39;</span><span class="p">,</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>        <span class="s1">&#39;timeout&#39;</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="s1">'my-provider'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="s1">'apiKey'</span>  <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">'MY_PROVIDER_KEY'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="s1">'model'</span>   <span class="o">=&gt;</span> <span class="s1">'my-model'</span><span class="p">,</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>        <span class="s1">'timeout'</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="p">],</span>
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">];</span>
 </code></pre></div>
@@ -882,7 +882,7 @@
 <h2 id="api-key-management">API key management</h2>
 <p>Never put real API keys directly in <code>app/Config/AI.php</code>. The config file is typically committed to version control — keys embedded there will be exposed.</p>
 <p>Instead, store keys in your <code>.env</code> file and reference them via <code>env()</code>, which is what the default config already does:</p>
-<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="x">&#39;apiKey&#39; =&gt; env(&#39;ANTHROPIC_API_KEY&#39;, &#39;&#39;),</span>
+<div class="language-php highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="x">'apiKey' =&gt; env('ANTHROPIC_API_KEY', ''),</span>
 </code></pre></div>
 <p>A <code>.env.example</code> is included in this package as a starting point. Copy it to <code>.env</code> in your project root and fill in the keys for the drivers you use:</p>
 <div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cp<span class="w"> </span>vendor/myth/scribe/.env.example<span class="w"> </span>.env
@@ -995,7 +995,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "content.code.copy", "navigation.footer", "content.action.edit", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
