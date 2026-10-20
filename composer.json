@@ -41,6 +41,9 @@
         "allow-plugins": {
             "phpstan/extension-installer": true
         },
+        "platform": {
+            "php": "8.2.27"
+        },
         "sort-packages": true
     },
     "scripts": {
@@ -60,7 +63,7 @@
         "docker:test":          "docker compose run --rm app composer test",
         "docker:test:coverage": "docker compose run --rm app composer test:coverage",
         "analyze": [
-            "phpstan analyze",
+            "phpstan analyze --memory-limit=1G",
             "rector process --dry-run"
         ],
         "ci": [
@@ -72,11 +75,14 @@
         ],
         "cs": "php-cs-fixer fix --ansi --verbose --dry-run --diff",
         "cs-fix": "php-cs-fixer fix --ansi --verbose --diff",
-        "deduplicate": "phpcpd src/ tests/",
+        "deduplicate": [
+            "@php -r \"is_file('build/phpcpd.phar') || (is_dir('build') || mkdir('build')) && copy('https://phar.phpunit.de/phpcpd-6.0.3.phar', 'build/phpcpd.phar');\"",
+            "@php build/phpcpd.phar src/ tests/"
+        ],
         "rector": "rector process",
         "sa": "@analyze",
         "style": "@cs-fix",
-        "test": "phpunit",
+        "test": "phpunit --no-coverage",
         "test:coverage": "phpunit --coverage-html build/phpunit/html"
     }
 }
